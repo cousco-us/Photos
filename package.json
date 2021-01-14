@@ -1,17 +1,43 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
-  "license": "",
+  "name": "photos",
+  "description": "Create clone of trulia's photogallery front end",
+  "author": "Benjamin Malamud-Roam",
+  "license": "UNLICENSED",
+  "private": true,
   "engines": {
     "node": ">=6.13.0"
   },
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "react-dev-watch": "webpack -w"
   },
   "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^17.0.1"
   },
   "devDependencies": {
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
-  }
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-react": "^7.12.10",
+    "babel-loader": "^8.2.2",
+    "eslint": "^7.17.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor.git",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "webpack": "^5.14.0",
+    "webpack-cli": "^4.3.1"
+  },
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cousco-us/Photos.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/cousco-us/Photos/issues"
+  },
+  "homepage": "https://github.com/cousco-us/Photos#readme"
 }
