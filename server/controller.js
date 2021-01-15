@@ -12,6 +12,7 @@ module.exports = {
       });
   },
 
+  /* ------------------- The Following are for dev purposes only ----------------- */
   getAllHomes: (req, res) => {
     dbModel.getAllHomes()
       .then((homes) => {
