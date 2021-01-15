@@ -10,6 +10,7 @@ app.use(express.json());
 
 app.get('/api/photoGallery/:id', controller.getHomeInfo);
 app.get('/api/photoGallery', controller.getAllHomes);
+app.delete('/api/photoGallery', controller.deleteAll);
 
 app.listen(port, () => {
   console.log('listening at port ', port);

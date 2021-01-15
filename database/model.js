@@ -11,14 +11,23 @@ module.exports = {
       });
   },
 
-  getAllHomes: () => {
+  getAllHomes: () => (
     Homes.find()
-      .then((homes) => {
-        console.log('made it here, homes: ', homes);
-        return homes.floorplan;
-      })
+      .then((homes) => (
+        homes
+      ))
       .catch((err) => {
         console.log(err);
-      });
-  },
+      })
+  ),
+
+  deleteAll: () => (
+    Homes.remove()
+      .then((result) => (
+        result
+      ))
+      .catch((err) => {
+        console.log(err);
+      })
+  ),
 };
