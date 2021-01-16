@@ -12,24 +12,25 @@ const addressSchema = new mongoose.Schema({
   line2: String,
   neighborhood: String,
   neighborhoodUrl: String,
-})
+});
 
 const floorplanSchema = new mongoose.Schema({
   numBeds: Number,
   numBaths: Number,
   sqft: Number,
-})
+});
 
 const houseDetailsSchema = new mongoose.Schema({
   address: { type: addressSchema, default: {} },
   price: Number,
   floorplan: { type: floorplanSchema, default: {} },
-})
+});
 
 const homesSchema = new mongoose.Schema({
   images: Array,
   tags: Array,
   details: { type: houseDetailsSchema, default: {} },
+  saved: { type: Boolean, default: false },
 });
 
 module.exports.db = db;

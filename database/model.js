@@ -5,6 +5,10 @@ module.exports = {
     Homes.find({ _id: homeId })
   ),
 
+  toggleHomeSaved: (homeId, saved) => (
+    Homes.updateOne({ _id: homeId }, { saved })
+  ),
+
   getAllHomes: () => (
     Homes.find()
       .then((homes) => (
