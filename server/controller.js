@@ -12,6 +12,18 @@ module.exports = {
       });
   },
 
+  toggleHomeSaved: ({ params, body }, res) => {
+    const { homeId } = params;
+    const { saved } = body;
+    dbModel.toggleHomeSaved(homeId, saved)
+      .then((result) => {
+        res.status(200).send(result);
+      })
+      .catch((err) => {
+        res.status(403).send(err);
+      });
+  },
+
   /* ------------------- The Following are for dev purposes only ----------------- */
   getAllHomes: (req, res) => {
     dbModel.getAllHomes()
@@ -26,7 +38,7 @@ module.exports = {
   deleteAll: (req, res) => {
     dbModel.deleteAll()
       .then(() => {
-        res.status(204);
+        res.status(204).send('');
       })
       .catch((err) => {
         res.status(403).send(err);

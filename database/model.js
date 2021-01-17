@@ -1,15 +1,13 @@
 const { Homes } = require('./index.js');
 
 module.exports = {
-  getHomeInfo: (homeId, callback) => {
-    Homes.findById(homeId)
-      .then((result) => {
-        callback(null, result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  },
+  getHomeInfo: (homeId) => (
+    Homes.find({ _id: homeId })
+  ),
+
+  toggleHomeSaved: (homeId, saved) => (
+    Homes.updateOne({ _id: homeId }, { saved })
+  ),
 
   getAllHomes: () => (
     Homes.find()
