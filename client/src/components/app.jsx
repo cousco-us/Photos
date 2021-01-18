@@ -35,7 +35,7 @@ class App extends React.Component {
     if (currentHome.images) {
       return (
         <div>
-          <GalleryPreview images={currentHome.images} saved={saved} />
+          <GalleryPreview images={currentHome.images} saved={saved} tags={currentHome.tags} />
           <HomeInfo home={currentHome} />
         </div>
       );
