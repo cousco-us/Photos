@@ -9,7 +9,7 @@ const port = 3000;
 app.use(cors());
 app.use(express.json());
 // serving static files not working
-app.use('/static', express.static(path.join(__dirname, '../public/index.html')));
+app.use('/static', express.static('http://127.0.0.1:5500/public/index.html'));
 
 app.get('/api/photoGallery/:homeId', controller.getHomeInfo);
 app.patch('/api/photoGallery/:homeId', controller.toggleHomeSaved);

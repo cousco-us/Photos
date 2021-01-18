@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import GalleryPreview from './galleryPreview.jsx';
+import HomeInfo from './homeInfo.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -29,17 +31,18 @@ class App extends React.Component {
   }
 
   render() {
-    const { currentHome } = this.state;
+    const { currentHome, saved } = this.state;
     if (currentHome.images) {
       return (
         <div>
-          <img src={this.state.currentHome.images[0]} alt="pic0" width="500" height="600" />
+          <GalleryPreview images={currentHome.images} saved={saved} />
+          <HomeInfo home={currentHome} />
         </div>
       );
     }
     return (
       <h1>
-        Loading
+        Loading...
       </h1>
     );
   }
