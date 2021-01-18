@@ -8,6 +8,8 @@ const port = 3000;
 app.use(cors());
 app.use(express.json());
 
+//make sure to serve up static files
+
 app.get('/api/photoGallery/:homeId', controller.getHomeInfo);
 app.patch('/api/photoGallery/:homeId', controller.toggleHomeSaved);
 app.get('/api/photoGallery', controller.getAllHomes);
