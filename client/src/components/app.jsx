@@ -38,7 +38,7 @@ class App extends React.Component {
     const { currentHome, saved } = this.state;
     if (currentHome.images) {
       return (
-        <div>
+        <div className="content">
           <GalleryPreview images={currentHome.images} saved={saved} tags={currentHome.tags} openGallery={this.openGallery} />
           <HomeInfo home={currentHome} />
         </div>
