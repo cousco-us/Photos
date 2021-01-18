@@ -8,7 +8,7 @@ const GalleryPreview = ({ images, tags, saved }) => {
   return (
     <div>
       {/*
-        <sampleImages images={sampleImages} onClick={openGallery}/>
+        <SampleImages images={sampleImages} onClick={openGallery}/>
         <HomeDetails tags={tags}/>
         <HomeOptions saved={saved}/>
         <GallerySize size={images.length} openGallery={this.openGallery}/>
