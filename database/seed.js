@@ -2,7 +2,7 @@ const faker = require('faker');
 const { Homes, db } = require('./index.js');
 
 const sampleImages = [];
-const possibleTags = ['For Sale', 'For Rent', 'New', 'New Construction'];
+const possibleTags = ['For Sale', 'For Rent', 'New', 'New Construction', 'Off Market'];
 
 // for now we will not include neighborhood
 
