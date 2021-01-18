@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const controller = require('./controller.js');
@@ -7,8 +8,8 @@ const port = 3000;
 
 app.use(cors());
 app.use(express.json());
-
-//make sure to serve up static files
+// serving static files not working
+app.use('/static', express.static(path.join(__dirname, '../public/index.html')));
 
 app.get('/api/photoGallery/:homeId', controller.getHomeInfo);
 app.patch('/api/photoGallery/:homeId', controller.toggleHomeSaved);
