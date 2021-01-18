@@ -7,7 +7,7 @@ const HomeDetails = ({ saved }) => {
   }
   return (
     <div>
-      <h1>HomeDetails</h1>
+      <h1>HomeOptions</h1>
       <span>
         <button type="submit" className="save-btn">
           <div className={hasBeenSavedClass}>
