@@ -18,7 +18,7 @@ const HomeDetails = ({ saved }) => {
         </button>
         <button type="submit" className="share-btn">
           {/* share symbol */}
-          [|] Save
+          [|] Share
         </button>
       </span>
     </div>

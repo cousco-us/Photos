@@ -30,12 +30,16 @@ class App extends React.Component {
       });
   }
 
+  openGallery() {
+    console.log('You tried to open the gallery!');
+  }
+
   render() {
     const { currentHome, saved } = this.state;
     if (currentHome.images) {
       return (
         <div>
-          <GalleryPreview images={currentHome.images} saved={saved} tags={currentHome.tags} />
+          <GalleryPreview images={currentHome.images} saved={saved} tags={currentHome.tags} openGallery={this.openGallery} />
           <HomeInfo home={currentHome} />
         </div>
       );
