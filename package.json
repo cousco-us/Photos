@@ -13,6 +13,9 @@
     "react-dev": "webpack -w",
     "db:seed": "node database/seed.js"
   },
+  "resolutions": {
+    "styled-components": "^5"
+  },
   "dependencies": {
     "chai": "^4.2.0",
     "cors": "^2.8.5",
@@ -21,7 +24,8 @@
     "mongoose": "^5.11.11",
     "nodemon": "^2.0.7",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "styled-components": "^5.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",

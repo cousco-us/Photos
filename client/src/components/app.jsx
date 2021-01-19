@@ -1,9 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import styled from 'styled-components';
 import GalleryPreview from './galleryPreview.jsx';
 import HomeInfo from './homeInfo.jsx';
-require('jest-fetch-mock').enableMocks()
+
+const AppWrapper = styled.div`
+
+`;
 
 class App extends React.Component {
   constructor(props) {
@@ -16,8 +20,8 @@ class App extends React.Component {
     this.setState = this.setState.bind(this);
   }
 
-  async componentDidMount() {
-    await axios.get('http://localhost:3000/api/photoGallery/60022e8d39ee0a8615c3f457')
+  componentDidMount() {
+    axios.get('http://localhost:3000/api/photoGallery/60022e8d39ee0a8615c3f457')
       .then(({ data }) => {
         const currentHome = data[0];
         const { saved } = currentHome;
@@ -39,10 +43,10 @@ class App extends React.Component {
     const { currentHome, saved } = this.state;
     if (currentHome.images) {
       return (
-        <div className="content">
+        <AppWrapper>
           <GalleryPreview images={currentHome.images} saved={saved} tags={currentHome.tags} openGallery={this.openGallery} />
           <HomeInfo home={currentHome} />
-        </div>
+        </AppWrapper>
       );
     }
     return (
