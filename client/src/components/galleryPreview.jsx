@@ -7,21 +7,42 @@ import HomeOptions from './galleryPreviewComponents/homeOptions.jsx';
 import GallerySize from './galleryPreviewComponents/gallerySize.jsx';
 
 const Wrapper = styled.div`
-  display: 'flex';
+  /* max-width: 992px;
+  max-height: 500px;
+  align-content: center; */
+  max-height: 460px;
+  max-width: 952px;
+  width: 100%;
+  margin: auto;
+  border-radius: 10px;
+  overflow: hidden;
 `;
 
 const Background = styled.div`
-  display: 'flex';
+  max-width: 992px;
+  z-index: 0;
+  position: relative;
+  /* display: 'flex'; */
 `;
 
-const Header = styled.div`
-  display: 'flex';
+const Header = styled.span`
+  z-index: 1;
+  position: relative;
+  width: 98%;
+  top: -460px;
+  padding: 0 10px;
+  border: 2px solid yellow;
+  display: flex;
 `;
 
-const Footer = styled.div`
-  display: 'flex';
+const Footer = styled.span`
+  z-index: 1;
+  position: relative;
+  top: -75px;
+  display: flex;
+  padding: 0 10px;
+  border: 2px solid yellow;
 `;
-
 
 const GalleryPreview = ({ images, tags, saved, openGallery }) => {
   // choose sampleImages more deliberately (might be a stretch goal)

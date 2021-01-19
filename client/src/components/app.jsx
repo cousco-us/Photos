@@ -6,7 +6,6 @@ import GalleryPreview from './galleryPreview.jsx';
 import HomeInfo from './homeInfo.jsx';
 
 const AppWrapper = styled.div`
-
 `;
 
 class App extends React.Component {

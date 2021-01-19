@@ -1,13 +1,16 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const Wrapper = styled.span`
+  flex: 1;
+  justify-content: flex-end;
+`;
 
 const GallerySize = ({ size }) => (
-  <div>
-    <h1>GallerySize</h1>
-    <span>
-      {/* mountain logo */}
-      [^`^] {size}
-    </span>
-  </div>
+  <Wrapper>
+    {/* mountain logo */}
+    [^`^] {size}
+  </Wrapper>
 );
 
 export default GallerySize;
