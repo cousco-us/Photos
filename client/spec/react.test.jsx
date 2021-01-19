@@ -55,6 +55,7 @@ describe('App', () => {
   afterEach(() => {
     wrapper.unmount();
   });
+
   it('renders initial loading screen', () => {
     expect(wrapper.find('h1').length).toEqual(1);
   });
@@ -72,7 +73,6 @@ describe('App', () => {
     const didMount = wrapper.instance().componentDidMount();
     expect(spyDidMount).toHaveBeenCalled();
     didMount.then(() => {
-      // updating the wrapper
       wrapper.update();
       expect(wrapper.find('div .content').length).toBe(1);
       expect(wrapper.find('h1').length).toBe(0);
@@ -82,15 +82,7 @@ describe('App', () => {
     });
   });
 });
-// describe('Google', () => {
-//   beforeAll(async () => {
-//     await page.goto('https://google.com');
-//   });
 
-//   it('should be titled "Google"', async () => {
-//     await expect(page.title()).resolves.toMatch('Google');
-//   });
-// });
 // describe('GalleryPreview', () => {
 //   it('renders content on mount', () => {
 //     const wrapper = shallow(<App />);
