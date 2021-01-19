@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import GalleryPreview from './galleryPreview.jsx';
 import HomeInfo from './homeInfo.jsx';
+require('jest-fetch-mock').enableMocks()
 
 class App extends React.Component {
   constructor(props) {
@@ -15,8 +16,8 @@ class App extends React.Component {
     this.setState = this.setState.bind(this);
   }
 
-  componentDidMount() {
-    axios.get('http://localhost:3000/api/photoGallery/60022e8d39ee0a8615c3f457')
+  async componentDidMount() {
+    await axios.get('http://localhost:3000/api/photoGallery/60022e8d39ee0a8615c3f457')
       .then(({ data }) => {
         const currentHome = data[0];
         const { saved } = currentHome;

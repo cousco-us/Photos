@@ -5,6 +5,7 @@ module.exports = {
     'js',
     'jsx',
   ],
+  preset: "jest-puppeteer",
   setupFilesAfterEnv: ['jest-enzyme'],
   testEnvironment: 'enzyme',
   testEnvironmentOptions: {
@@ -13,5 +14,4 @@ module.exports = {
   transform: {
     '\\.jsx$': 'babel-jest',
   },
-
 };
