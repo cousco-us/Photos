@@ -22,17 +22,16 @@ const Background = styled.div`
   max-width: 992px;
   z-index: 0;
   position: relative;
-  /* display: 'flex'; */
 `;
 
 const Header = styled.span`
   z-index: 1;
   position: relative;
   width: 98%;
-  top: -460px;
+  top: -455px;
   padding: 0 10px;
-  border: 2px solid yellow;
   display: flex;
+  justify-content: space-between;
 `;
 
 const Footer = styled.span`
@@ -41,7 +40,6 @@ const Footer = styled.span`
   top: -75px;
   display: flex;
   padding: 0 10px;
-  border: 2px solid yellow;
 `;
 
 const GalleryPreview = ({ images, tags, saved, openGallery }) => {

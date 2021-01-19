@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 const Wrapper = styled.span`
   border: 1px solid black;
-  flex: 1;
-  /* justify-content: flex-end; */
+  width: 20%;
+  text-align: right;
 `;
 
 const HomeDetails = ({ saved }) => {
