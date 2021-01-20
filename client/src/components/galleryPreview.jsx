@@ -29,7 +29,7 @@ const Header = styled.span`
   position: relative;
   width: 98%;
   top: -455px;
-  padding: 0 10px;
+  padding: 0 5px;
   display: flex;
   justify-content: space-between;
 `;
