@@ -14,7 +14,7 @@ const Wrapper = styled.div`
   max-width: 952px;
   width: 100%;
   margin: auto;
-  border-radius: 10px;
+  border-radius: 8px;
   overflow: hidden;
 `;
 
@@ -27,9 +27,9 @@ const Background = styled.div`
 const Header = styled.span`
   z-index: 1;
   position: relative;
-  width: 98%;
+  width: 100%;
   top: -455px;
-  padding: 0 5px;
+  margin-left: 5px;
   display: flex;
   justify-content: space-between;
 `;
@@ -40,6 +40,9 @@ const Footer = styled.span`
   top: -75px;
   display: flex;
   padding: 0 10px;
+  max-width: 50px;
+  height: 28px;
+  left: 92%;
 `;
 
 const GalleryPreview = ({ images, tags, saved, openGallery }) => {
