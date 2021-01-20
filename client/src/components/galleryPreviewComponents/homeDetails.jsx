@@ -1,12 +1,30 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const Wrapper = styled.span`
+  text-align: left;
+`;
+
+const Tag = styled.div`
+  border-radius: 5px;
+  padding: 3px 5px;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 1.33;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: white;
+  color: #3b4144;
+  font-family: Roboto, "Segoe UI Bold", Arial, sans-serif;
+`;
 
 const HomeDetails = ({ tags }) => (
-  <div>
-    <h1>HomeDetails</h1>
-    <span>
-      {tags[0].toUpperCase()}
-    </span>
-  </div>
+  // should loop through all tags rather than just display the first
+  <Wrapper>
+    <Tag>
+      {tags[0]}
+    </Tag>
+  </Wrapper>
 );
 
 export default HomeDetails;
