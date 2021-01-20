@@ -57,10 +57,10 @@ const HomeOptions = ({ saved }) => {
   }
   return (
     <Wrapper>
-      <OptionButton type="submit" className="save-btn">
+      <OptionButton type="submit">
         <Heart saved={saved} /> Save
       </OptionButton>
-      <OptionButton type="submit" className="share-btn">
+      <OptionButton type="submit">
         <Share /> Share
       </OptionButton>
     </Wrapper>
