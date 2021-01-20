@@ -3,37 +3,62 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-  border: 2px solid blue;
   max-height: 460px;
   max-width: 952px;
-  margin: auto;
+  width: 50%;
+  margin-left: 16%;
   padding: 10px;
   display: flex;
+  font-family: Roboto, "Segoe UI Bold", Arial, sans-serif;
+
 `;
 
 const LeftBox = styled.div`
-  border: 2px solid Yellow;
   flex: 1;
   display: flex;
   flex-direction: column;
+  padding-right: 10%;
 `;
 const RightBox = styled.div`
-  border: 2px solid Purple;
   flex: 1;
 `;
 const Address = styled.div`
-  border: 2px solid green;
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 `;
 const Floorplan = styled.span`
-  border: 2px solid Orange;
   flex: 1;
+  display: flex;
+  color: #3b4144;
+  letter-spacing: -0.1px;
+  line-height: 24px;
+  padding-top: 20px;
+  justify-content: space-between;
+  padding-right: 10%;
+`;
+const LineOne = styled.span`
+  flex: 1;
+  color:#3b4144;
+  display: inline;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.1px;
+  line-height: 32px;
+`;
+const LineTwo = styled.span`
+  flex: 1;
+  color: #3b4144;
+  display: inline;
+  letter-spacing: -0.1px;
+  line-height: 24px;
 `;
 
 //refactor to have symbol defined externally
 const Symbol = styled.div`
-  width: 16px;
-  height: 16px;
+  width: 24px;
+  height: 24px;
   display: inline-block;
   vertical-align: middle;
 `;
@@ -72,40 +97,34 @@ const HomeInfo = ({ home }) => {
     <Wrapper>
       <LeftBox>
         <Address>
-          <h4>
+          <LineOne>
             {address.line1}
-          </h4>
-          <p>
+          </LineOne>
+          <LineTwo>
             {address.line2}
-          </p>
+          </LineTwo>
         </Address>
         <Floorplan>
-          <div className="num-beds">
-            <Bed /> {numBeds} Beds
-          </div>
-          <div className="num-baths">
-            <Bath /> {numBaths} Baths
-          </div>
-          <div className="sqft">
-            <Triangle /> {sqft} sqft
-            {/* add comma to sqft if possible */}
-          </div>
+          <Bed /> {numBeds} Beds
+          <Bath /> {numBaths} Baths
+          <Triangle /> {sqft} sqft
+          {/* add comma to sqft if possible */}
         </Floorplan>
       </LeftBox>
       <RightBox>
         <div className="price right">
-          <h4 className="price-value">
-            ${price}
+          <LineOne>
             {/* add commas to price if possible */}
-          </h4>
-          <p className="price-info">
-            Trulia Estimate (i)
+            ${price}
+          </LineOne>
+          {/* <p className="price-info">
+            Trulia Estimate (i) */}
             {/* make this a button which on click will open a model with info
             also replace (i) with little info logo */}
-          </p>
+          {/* </p>
           <p className="price-as-of">
             as of {currentDate.toDateString()}
-          </p>
+          </p> */}
         </div>
       </RightBox>
     </Wrapper>

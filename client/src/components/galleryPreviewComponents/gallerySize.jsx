@@ -7,7 +7,7 @@ const Wrapper = styled.span`
   display: inline-block;
   font-size: 14px;
   font-weight: 700;
-  line-height: 20.02px;
+  line-height: 21px;
   text-align: center;
   background-color: rgba(59, 65, 68, 0.8);
   border-radius: 4px;
