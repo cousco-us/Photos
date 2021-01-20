@@ -22,6 +22,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   font-family: Roboto, "Segoe UI Bold", Arial, sans-serif;
   max-height: 85%;
+  max-width: 85%;
   align-items: flex-start;
 `;
 
@@ -52,25 +53,41 @@ const HomeDetails = styled.span`
   letter-spacing: -0.1px;
   line-height: 20.02px;
 `;
-const Images = styled.div`
-  flex: 10;
+const Images = styled.span`
+  flex: 1;
+  width: 90%;
+  margin: auto;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  overflow: scroll;
+  object-fit: scale-down;
+  overflow-y: scroll;
 `;
 const ImageRow = styled.span`
-  //we will pass in number of images
   padding: 0;
+  max-width: 100%;
+  display: flex;
   justify-content: space-between;
 `;
-
-// const Image = styled.span`
-
-// `;
+const OneImageRow = styled.span`
+  //we will pass in number of images
+  /* width: fit-content; */
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+`;
+const getWidth = (numImages) => {
+  99
+};
+const Image = styled.img`
+  max-width: ${(props) => (`${(99 / Number(props.num))}%`)};
+  flex: 1;
+  border: 2px solid blue;
+`;
 
 const GalleryModal = (({ home, saved }) => {
   let placeholder = 1;
-  const { details } = home;
+  const { details, images } = home;
   const { floorplan, price, address } = details;
   const { numBeds, numBaths } = floorplan;
   return ReactDOM.createPortal(
@@ -86,15 +103,18 @@ const GalleryModal = (({ home, saved }) => {
           {`${address.line1} | $${price} | ${numBeds} Beds ${numBaths} Baths`}
         </HomeDetails>
         <Images>
-          IMAGES
           <ImageRow>
-            FIRST ROW
+            <Image src={images[0]} num="1" alt="gallery-pic" />
           </ImageRow>
           <ImageRow>
-            Second ROW
+            {images.slice(1, 4).map((image) => (
+              <Image src={image} num="3" alt="gallery-pic" />
+            ))}
           </ImageRow>
           <ImageRow>
-            Third ROW
+            {images.slice(5, 7).map((image) => (
+              <Image src={image} num="2" alt="gallery-pic" />
+            ))}
           </ImageRow>
         </Images>
       </Wrapper>
