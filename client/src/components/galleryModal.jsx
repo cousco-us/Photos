@@ -18,7 +18,7 @@ const Wrapper = styled.div`
   margin: 5%;
   display: flex;
   border: 1px solid black;
-  background-color: teal;
+  background-color: white;
   flex-direction: column;
   font-family: Roboto, "Segoe UI Bold", Arial, sans-serif;
   max-height: 85%;
@@ -31,7 +31,8 @@ const NavBar = styled.span`
   display: flex;
   width: 100%;
   justify-content: space-between;
-  padding: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid #dfdfdf;
 `;
 
 const DisplayChoice = styled.div`
@@ -55,13 +56,13 @@ const HomeDetails = styled.span`
 `;
 const Images = styled.span`
   flex: 1;
-  width: 90%;
-  margin: auto;
+  margin-bottom: 10px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   object-fit: scale-down;
   overflow-y: scroll;
+  border-radius: 20px/30px;
 `;
 const ImageRow = styled.span`
   padding: 0;
@@ -80,9 +81,10 @@ const getWidth = (numImages) => {
   99
 };
 const Image = styled.img`
+  max-height: 550px;
   max-width: ${(props) => (`${(99 / Number(props.num))}%`)};
   flex: 1;
-  border: 2px solid blue;
+  margin: 5px;
 `;
 
 const GalleryModal = (({ home, saved }) => {
