@@ -11,6 +11,7 @@ const Wrapper = styled.span`
   text-align: center;
   background-color: rgba(59, 65, 68, 0.8);
   border-radius: 4px;
+  font-family: Roboto, "Segoe UI Bold", Arial, sans-serif;
   padding: 3px 8px;
 `;
 
@@ -29,8 +30,7 @@ const Mountain = () => {
       {mountain}
     </Symbol>
   );
-}
-
+};
 
 const GallerySize = ({ size }) => (
   <Wrapper>

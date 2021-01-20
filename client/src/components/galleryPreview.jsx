@@ -37,10 +37,10 @@ const Header = styled.span`
 const Footer = styled.span`
   z-index: 1;
   position: relative;
-  top: -75px;
+  top: -78px;
   display: flex;
-  padding: 0 10px;
-  max-width: 50px;
+  padding: 0 17px;
+  max-width: 60px;
   height: 28px;
   left: 92%;
 `;
