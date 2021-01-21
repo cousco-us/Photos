@@ -107,10 +107,13 @@ class GalleryModal extends React.Component {
 
   componentWillUnmount() {
     modalRoot.removeChild(this.el);
+    modalRoot.style['background-color'] = 'rgba(0, 0, 0, 0)';
+    appRoot.style.filter = 'none';
+    modalRoot.setAttribute('style', "width: 0; height: 0;");
   }
 
   render() {
-    const { home, saved } = this.props;
+    const { home, saved, close } = this.props;
     const { details, images } = home;
     const { floorplan, price, address } = details;
     const { numBeds, numBaths } = floorplan;
@@ -150,10 +153,10 @@ class GalleryModal extends React.Component {
   }
 };
 
-const GalleryWrapper = ({home, saved, showingGallery}) => {
+const GalleryWrapper = ({home, saved, showingGallery, close}) => {
   if (showingGallery) {
     return (
-      <GalleryModal home={home} saved={saved} />
+      <GalleryModal home={home} saved={saved} close={close} />
     );
   }
   return <div />;

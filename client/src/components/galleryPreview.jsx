@@ -48,7 +48,7 @@ class GalleryPreview extends React.Component {
     super(props);
     this.state = {
       currentHome: this.props.currentHome,
-      showingGallery: false,
+      showingGallery: this.props.showingGallery,
     };
     this.setState = this.setState.bind(this);
     this.handleGalleryDisplay = this.handleGalleryDisplay.bind(this);
@@ -67,7 +67,6 @@ class GalleryPreview extends React.Component {
     const { currentHome, showingGallery } = this.state;
     const { images, tags } = currentHome;
     const sampleImages = images.slice(0, 3);
-    console.log('showing: ', showingGallery);
     return (
       <Wrapper>
         <Background>
@@ -80,7 +79,7 @@ class GalleryPreview extends React.Component {
         <Footer>
           <GallerySize size={images.length} handleGalleryDisplay={this.handleGalleryDisplay} />
         </Footer>
-        <GalleryWrapper home={currentHome} saved={this.props.saved} showingGallery={showingGallery} />
+        <GalleryWrapper home={currentHome} saved={this.props.saved} showingGallery={showingGallery} close={this.handleGalleryDisplay} />
       </Wrapper>
     );
   }
