@@ -55,7 +55,7 @@ const GalleryPreview = ({ images, tags, saved, openGallery }) => {
       </Background>
       <Header>
         <HomeDetails tags={tags} />
-        <HomeOptions saved={saved} />
+        <HomeOptions saved={saved} btnColor="#007882"/>
       </Header>
       <Footer>
         <GallerySize size={images.length} openGallery={openGallery} />

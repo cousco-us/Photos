@@ -1,29 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
+import BackdropFilter from "react-backdrop-filter";
 import HomeOptions from './galleryPreviewComponents/homeOptions.jsx';
 
 const modalRoot = document.getElementById('modal-root');
+const appRoot = document.getElementById('app');
 const Modal = styled.div`
   z-index: 100;
   position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  inset: 0;
 `;
 modalRoot.setAttribute('style', "position: fixed; top: 50%; left: 50%;transform: translate(-50%, -50%); width: 100%; height: 100%;");
+appRoot.style.filter = 'blur(20px)';
+modalRoot.style['background-color'] = 'rgba(0, 0, 0, 0.6)';
 
 const Wrapper = styled.div`
-  margin: 5%;
+  margin: 3%;
   display: flex;
-  border: 1px solid black;
+  border-radius: 8px;
   background-color: white;
   flex-direction: column;
   font-family: Roboto, "Segoe UI Bold", Arial, sans-serif;
-  max-height: 85%;
-  max-width: 85%;
+  max-height: 87%;
+  max-width: 92%;
   align-items: flex-start;
+  padding: 8px;
 `;
 
 const NavBar = styled.span`
@@ -31,13 +33,27 @@ const NavBar = styled.span`
   display: flex;
   width: 100%;
   justify-content: space-between;
-  padding: 8px 0;
+  padding-bottom: 8px;
   border-bottom: 1px solid #dfdfdf;
 `;
 
-const DisplayChoice = styled.div`
-  //we will pass in number of images
+const OptionButton = styled.button`
+  flex: 1;
+  height: 40px;
+  padding: 0 1em;
+  background: transparent;
+  display: inline-block;
+  align-items: center;
+  border-radius: 10px;
+  border: 1px solid #dfdfdf;
   margin-right: 10px;
+  font-weight: 700;
+  line-height: 20px;
+  font-size: 16px;
+  font-family: Roboto, "Segoe UI Bold", Arial, sans-serif;
+  color: #007882;
+`;
+const DisplayChoice = styled.div`
   display: flex;
   justify-content: flex-start;
 `;
@@ -62,29 +78,19 @@ const Images = styled.span`
   flex-direction: column;
   object-fit: scale-down;
   overflow-y: scroll;
-  border-radius: 20px/30px;
+  border-radius: 9px;
 `;
 const ImageRow = styled.span`
-  padding: 0;
   max-width: 100%;
   display: flex;
   justify-content: space-between;
 `;
-const OneImageRow = styled.span`
-  //we will pass in number of images
-  /* width: fit-content; */
-  padding: 0;
-  display: flex;
-  justify-content: space-between;
-`;
-const getWidth = (numImages) => {
-  99
-};
+
 const Image = styled.img`
   max-height: 550px;
   max-width: ${(props) => (`${(99 / Number(props.num))}%`)};
   flex: 1;
-  margin: 5px;
+  padding: 0 8px 8px 0;
 `;
 
 const GalleryModal = (({ home, saved }) => {
@@ -97,9 +103,11 @@ const GalleryModal = (({ home, saved }) => {
       <Wrapper>
         <NavBar>
           <DisplayChoice>
-            PHOTOS
+            <OptionButton>
+              Photos
+            </OptionButton>
           </DisplayChoice>
-          <HomeOptions saved={saved} />
+          <HomeOptions saved={saved} color="#3b4144" />
         </NavBar>
         <HomeDetails>
           {`${address.line1} | $${price} | ${numBeds} Beds ${numBaths} Baths`}

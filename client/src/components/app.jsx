@@ -6,6 +6,8 @@ import GalleryPreview from './galleryPreview.jsx';
 import GalleryModal from './galleryModal.jsx';
 import HomeInfo from './homeInfo.jsx';
 
+// const appRoot = document.getElementById('app');
+// appRoot.style.filter = '';
 const AppWrapper = styled.div`
   display: grid;
 `;
