@@ -3,9 +3,13 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import styled from 'styled-components';
 import GalleryPreview from './galleryPreview.jsx';
+import GalleryModal from './galleryModal.jsx';
 import HomeInfo from './homeInfo.jsx';
 
+// const appRoot = document.getElementById('app');
+// appRoot.style.filter = '';
 const AppWrapper = styled.div`
+  display: grid;
 `;
 
 class App extends React.Component {
@@ -45,6 +49,7 @@ class App extends React.Component {
         <AppWrapper>
           <GalleryPreview images={currentHome.images} saved={saved} tags={currentHome.tags} openGallery={this.openGallery} />
           <HomeInfo home={currentHome} />
+          <GalleryModal home={currentHome} saved={saved} />
         </AppWrapper>
       );
     }
