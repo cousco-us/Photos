@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import HomeOptions from './galleryPreviewComponents/homeOptions.jsx';
 
-const modalRoot = document.getElementById('modal-root');
+// const modalRoot = document.getElementById('modal-root');
 const Modal = styled.div`
   z-index: 100;
   position: fixed;
@@ -48,6 +48,30 @@ const OptionButton = styled.button`
   font-family: Roboto, "Segoe UI Bold", Arial, sans-serif;
   color: #007882;
 `;
+
+const Symbol = styled.div`
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  vertical-align: middle;
+`;
+
+const CloseBtn = ({ color, handleClose }) => {
+  const closeBtn = <svg className="svg" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M27.816 25.935l-1.881 1.88-21.83-21.83 1.88-1.88 21.83 21.83zm-1.881-21.83l1.88 1.88-21.83 21.83-1.88-1.88 21.83-21.83z" fill={color}></path></svg>;
+  return (
+    <Symbol onClick={handleClose}>
+      {closeBtn}
+    </Symbol>
+  );
+};
+
+const Right = styled.span`
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: .7em;
+`;
 const DisplayChoice = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -89,44 +113,80 @@ const Image = styled.img`
   padding: ${(props) => ((props.last === 'mmhmm') ? '0 0 8px 0' : '0 8px 8px 0')};
 `;
 
-const GalleryModal = (({ home, saved }) => {
-  let placeholder = 1;
-  const { details, images } = home;
-  const { floorplan, price, address } = details;
-  const { numBeds, numBaths } = floorplan;
-  return ReactDOM.createPortal(
-    (
-      <Wrapper>
-        <NavBar>
-          <DisplayChoice>
-            <OptionButton>
-              Photos
-            </OptionButton>
-          </DisplayChoice>
-          <HomeOptions saved={saved} color="#3b4144" />
-        </NavBar>
-        <HomeDetails>
-          {`${address.line1} | $${price} | ${numBeds} Beds ${numBaths} Baths`}
-        </HomeDetails>
-        <Images>
-          <ImageRow>
-            <Image src={images[0]} num="1" alt="gallery-pic" last="mmhmm" />
-          </ImageRow>
-          <ImageRow>
-            {images.slice(1, 4).map((image, i, arr) => (
-              <Image src={image} num="3" alt="gallery-pic" last={((i === arr.length - 1) ? 'mmhmm' : undefined)} />
-            ))}
-          </ImageRow>
-          <ImageRow>
-            {images.slice(5, 7).map((image, i, arr) => (
-              <Image src={image} num="2" alt="gallery-pic" last={((i === arr.length - 1) ? 'mmhmm' : undefined)} />
-            ))}
-          </ImageRow>
-        </Images>
-      </Wrapper>
-    ),
-    modalRoot,
-  );
-});
+const modalRoot = document.getElementById('modal-root');
+const appRoot = document.getElementById('app');
 
-export default GalleryModal;
+class GalleryModal extends React.Component {
+  constructor(props) {
+    super(props);
+    this.el = document.createElement('Wrapper');
+    // this.el.setAttribute('style', 'overflow: scroll');
+  }
+
+  componentDidMount() {
+    modalRoot.setAttribute('style', 'position: fixed; top: 50%; left: 50%;transform: translate(-50%, -50%); width: 100%; height: 100%;');
+    modalRoot.style['background-color'] = 'rgba(0, 0, 0, 0.6)';
+    appRoot.style.filter = 'blur(20px)';
+    modalRoot.appendChild(this.el);
+  }
+
+  componentWillUnmount() {
+    modalRoot.removeChild(this.el);
+    modalRoot.style['background-color'] = 'rgba(0, 0, 0, 0)';
+    appRoot.style.filter = 'none';
+    modalRoot.setAttribute('style', "width: 0; height: 0;");
+  }
+
+  render() {
+    const { home, saved, close } = this.props;
+    const { details, images } = home;
+    const { floorplan, price, address } = details;
+    const { numBeds, numBaths } = floorplan;
+    return ReactDOM.createPortal(
+      (
+        <Wrapper>
+          <NavBar>
+            <DisplayChoice>
+              <OptionButton>
+                Photos
+              </OptionButton>
+            </DisplayChoice>
+            <Right>
+              <HomeOptions saved={saved} color="#3b4144" />
+              <CloseBtn color="#3b4144" handleClose={this.props.close} />
+            </Right>
+          </NavBar>
+          <HomeDetails>
+            {`${address.line1} | $${price} | ${numBeds} Beds ${numBaths} Baths`}
+          </HomeDetails>
+          <Images>
+            <ImageRow>
+              <Image src={images[0]} num="1" alt="gallery-pic" last="mmhmm" />
+            </ImageRow>
+            <ImageRow>
+              {images.slice(1, 4).map((image, i, arr) => (
+                <Image src={image} num="3" alt="gallery-pic" last={((i === arr.length - 1) ? 'mmhmm' : undefined)} />
+              ))}
+            </ImageRow>
+            <ImageRow>
+              {images.slice(5, 7).map((image, i, arr) => (
+                <Image src={image} num="2" alt="gallery-pic" last={((i === arr.length - 1) ? 'mmhmm' : undefined)} />
+              ))}
+            </ImageRow>
+          </Images>
+        </Wrapper>
+      ),
+      this.el,
+    );
+  }
+};
+
+const GalleryWrapper = ({home, saved, showingGallery, close}) => {
+  if (showingGallery) {
+    return (
+      <GalleryModal home={home} saved={saved} close={close} />
+    );
+  }
+  return <div />;
+};
+export default GalleryWrapper;

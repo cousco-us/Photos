@@ -6,9 +6,6 @@ import GalleryPreview from './galleryPreview.jsx';
 import GalleryModal from './galleryModal.jsx';
 import HomeInfo from './homeInfo.jsx';
 
-const appRoot = document.getElementById('app');
-// appRoot.style.filter = '';
-// appRoot.style['background-color'] = 'rgba(0, 0, 0, 0)';
 const AppWrapper = styled.div`
   display: block;
   max-width: 952px;
@@ -22,6 +19,7 @@ class App extends React.Component {
     this.state = {
       currentHome: {},
       saved: false,
+      showingGallery: false,
     };
     const { currentHome, saved } = this.state;
     this.setState = this.setState.bind(this);
@@ -45,25 +43,27 @@ class App extends React.Component {
 
   handleSaveClick(event) {
     event.preventDefault();
-    let isSaved = !this.state.saved;
-    console.log('i got clicked');
+    const isSaved = !this.state.saved;
     this.setState((state) => ({
       saved: isSaved,
     }));
   }
 
-  openGallery() {
-    console.log('You tried to open the gallery!');
+  closeGallery(event) {
+    event.preventDefault();
+    console.log('BLASSDA');
+    this.setState((state) => ({
+      showingGallery: false,
+    }));
   }
 
   render() {
-    const { currentHome, saved } = this.state;
+    const { currentHome, saved, showingGallery } = this.state;
     if (currentHome.images) {
       return (
-        <AppWrapper>
-          <GalleryPreview images={currentHome.images} saved={saved} tags={currentHome.tags} openGallery={this.openGallery} handleSaveClick={this.handleSaveClick} />
+        <AppWrapper onClick={this.closeGallery.bind(this)}>
+          <GalleryPreview  saved={saved} currentHome={currentHome} handleSaveClick={this.handleSaveClick} showingGallery={showingGallery} />
           <HomeInfo home={currentHome} />
-          {/* <GalleryModal home={currentHome} saved={saved} /> */}
         </AppWrapper>
       );
     }

@@ -64,7 +64,7 @@ const HomeOptions = ({ saved, btnColor, handleSaveClick }) => {
     hasBeenSavedClass = 'saved';
   }
   return (
-    <Wrapper onClick={handleSaveClick}>
+    <Wrapper>
       <OptionButton type="submit" onSubmit={handleSaveClick}>
         <Heart saved={saved} color={btnColor}/> Save
       </OptionButton>
