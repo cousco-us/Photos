@@ -54,6 +54,7 @@
     "jest-puppeteer": "^4.4.0",
     "puppeteer": "^5.5.0",
     "react-test-renderer": "^17.0.1",
+    "styled-components-test-utils": "^1.0.2",
     "webpack": "^5.14.0",
     "webpack-cli": "^4.3.1"
   },
