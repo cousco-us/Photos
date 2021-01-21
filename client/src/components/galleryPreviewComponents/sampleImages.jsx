@@ -24,8 +24,8 @@ const TopImage = styled.div`
 `;
 const BottomImage = styled.div`
 `;
-const SampleImages = ({ images }) => (
-  <Wrapper>
+const SampleImages = ({ images, handleGalleryDisplay }) => (
+  <Wrapper onClick={handleGalleryDisplay}>
     <LeftImage>
       <img className="sample-image-big" src={images[0]} alt="main images of preview" height="460" width="700" />
     </LeftImage>

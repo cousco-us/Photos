@@ -95,9 +95,6 @@ const appRoot = document.getElementById('app');
 class GalleryModal extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isOpen: this.props.isOpen,
-    }
     this.el = document.createElement('div');
   }
 

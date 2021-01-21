@@ -56,7 +56,6 @@ class GalleryPreview extends React.Component {
 
   handleGalleryDisplay(event) {
     event.preventDefault();
-    console.log('CLICKED');
     const show = !this.state.showingGallery;
     this.setState((state) => ({
       showingGallery: show,
@@ -68,19 +67,20 @@ class GalleryPreview extends React.Component {
     const { currentHome, showingGallery } = this.state;
     const { images, tags } = currentHome;
     const sampleImages = images.slice(0, 3);
+    console.log('showing: ', showingGallery);
     return (
       <Wrapper>
         <Background>
-          <SampleImages images={sampleImages} onClick={this.handleGalleryDisplay} />
+          <SampleImages images={sampleImages} handleGalleryDisplay={this.handleGalleryDisplay} />
         </Background>
         <Header>
           <HomeDetails tags={tags} />
           <HomeOptions saved={this.props.saved} btnColor="#007882" handleSaveClick={this.props.handleSaveClick} />
         </Header>
         <Footer>
-          <GallerySize size={images.length} onClick={this.handleGalleryDisplay} />
+          <GallerySize size={images.length} handleGalleryDisplay={this.handleGalleryDisplay} />
         </Footer>
-        {/* <GalleryWrapper home={currentHome} saved={saved} showingGallery={showingGallery} /> */}
+        <GalleryWrapper home={currentHome} saved={this.props.saved} showingGallery={showingGallery} />
       </Wrapper>
     );
   }
