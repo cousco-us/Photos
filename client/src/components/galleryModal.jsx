@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import HomeOptions from './galleryPreviewComponents/homeOptions.jsx';
 
-const modalRoot = document.getElementById('modal-root');
+// const modalRoot = document.getElementById('modal-root');
 const Modal = styled.div`
   z-index: 100;
   position: fixed;
@@ -89,44 +89,76 @@ const Image = styled.img`
   padding: ${(props) => ((props.last === 'mmhmm') ? '0 0 8px 0' : '0 8px 8px 0')};
 `;
 
-const GalleryModal = (({ home, saved }) => {
-  let placeholder = 1;
-  const { details, images } = home;
-  const { floorplan, price, address } = details;
-  const { numBeds, numBaths } = floorplan;
-  return ReactDOM.createPortal(
-    (
-      <Wrapper>
-        <NavBar>
-          <DisplayChoice>
-            <OptionButton>
-              Photos
-            </OptionButton>
-          </DisplayChoice>
-          <HomeOptions saved={saved} color="#3b4144" />
-        </NavBar>
-        <HomeDetails>
-          {`${address.line1} | $${price} | ${numBeds} Beds ${numBaths} Baths`}
-        </HomeDetails>
-        <Images>
-          <ImageRow>
-            <Image src={images[0]} num="1" alt="gallery-pic" last="mmhmm" />
-          </ImageRow>
-          <ImageRow>
-            {images.slice(1, 4).map((image, i, arr) => (
-              <Image src={image} num="3" alt="gallery-pic" last={((i === arr.length - 1) ? 'mmhmm' : undefined)} />
-            ))}
-          </ImageRow>
-          <ImageRow>
-            {images.slice(5, 7).map((image, i, arr) => (
-              <Image src={image} num="2" alt="gallery-pic" last={((i === arr.length - 1) ? 'mmhmm' : undefined)} />
-            ))}
-          </ImageRow>
-        </Images>
-      </Wrapper>
-    ),
-    modalRoot,
-  );
-});
+const modalRoot = document.getElementById('modal-root');
+const appRoot = document.getElementById('app');
 
-export default GalleryModal;
+class GalleryModal extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isOpen: this.props.isOpen,
+    }
+    this.el = document.createElement('div');
+  }
+
+  componentDidMount() {
+    modalRoot.setAttribute('style', "position: fixed; top: 50%; left: 50%;transform: translate(-50%, -50%); width: 100%; height: 100%;");
+    modalRoot.style['background-color'] = 'rgba(0, 0, 0, 0.6)';
+    appRoot.style.filter = 'blur(20px)';
+    modalRoot.appendChild(this.el);
+  }
+
+  componentWillUnmount() {
+    modalRoot.removeChild(this.el);
+  }
+
+  render() {
+    const { home, saved } = this.props;
+    const { details, images } = home;
+    const { floorplan, price, address } = details;
+    const { numBeds, numBaths } = floorplan;
+    return ReactDOM.createPortal(
+      (
+        <Wrapper>
+          <NavBar>
+            <DisplayChoice>
+              <OptionButton>
+                Photos
+              </OptionButton>
+            </DisplayChoice>
+            <HomeOptions saved={saved} color="#3b4144" />
+          </NavBar>
+          <HomeDetails>
+            {`${address.line1} | $${price} | ${numBeds} Beds ${numBaths} Baths`}
+          </HomeDetails>
+          <Images>
+            <ImageRow>
+              <Image src={images[0]} num="1" alt="gallery-pic" last="mmhmm" />
+            </ImageRow>
+            <ImageRow>
+              {images.slice(1, 4).map((image, i, arr) => (
+                <Image src={image} num="3" alt="gallery-pic" last={((i === arr.length - 1) ? 'mmhmm' : undefined)} />
+              ))}
+            </ImageRow>
+            <ImageRow>
+              {images.slice(5, 7).map((image, i, arr) => (
+                <Image src={image} num="2" alt="gallery-pic" last={((i === arr.length - 1) ? 'mmhmm' : undefined)} />
+              ))}
+            </ImageRow>
+          </Images>
+        </Wrapper>
+      ),
+      this.el,
+    );
+  }
+};
+
+const GalleryWrapper = ({home, saved, showingGallery}) => {
+  if (showingGallery) {
+    return (
+      <GalleryModal home={home} saved={saved} />
+    );
+  }
+  return <div />;
+};
+export default GalleryWrapper;

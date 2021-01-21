@@ -5,23 +5,7 @@ import SampleImages from './galleryPreviewComponents/sampleImages.jsx';
 import HomeDetails from './galleryPreviewComponents/homeDetails.jsx';
 import HomeOptions from './galleryPreviewComponents/homeOptions.jsx';
 import GallerySize from './galleryPreviewComponents/gallerySize.jsx';
-import GalleryModal from './galleryModal.jsx';
-
-const modalRoot = document.getElementById('modal-root');
-const appRoot = document.getElementById('app');
-const openGallery = () => {
-  console.log('GOT CLICKED');
-  modalRoot.setAttribute('style', "position: fixed; top: 50%; left: 50%;transform: translate(-50%, -50%); width: 100%; height: 100%;");
-  modalRoot.style['background-color'] = 'rgba(0, 0, 0, 0.6)';
-  modalRoot.addChild(<GalleryModal home={currentHome} saved={saved} />);
-  appRoot.style.filter = 'blur(20px)';
-};
-
-const closeGallery = () => {
-  appRoot.style.filter = '';
-  appRoot.style['background-color'] = 'rgba(0, 0, 0, 0)';
-  modalRoot.innerHTML('');
-};
+import GalleryWrapper from './galleryModal.jsx';
 
 const Wrapper = styled.div`
   max-height: 460px;
@@ -48,7 +32,6 @@ const Header = styled.span`
   justify-content: space-between;
 `;
 
-
 const Footer = styled.span`
   z-index: 1;
   position: relative;
@@ -60,23 +43,47 @@ const Footer = styled.span`
   left: 92%;
 `;
 
-const GalleryPreview = ({ images, tags, saved, handleSaveClick }) => {
+class GalleryPreview extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentHome: this.props.currentHome,
+      showingGallery: false,
+    };
+    this.setState = this.setState.bind(this);
+    this.handleGalleryDisplay = this.handleGalleryDisplay.bind(this);
+  }
+
+  handleGalleryDisplay(event) {
+    event.preventDefault();
+    console.log('CLICKED');
+    const show = !this.state.showingGallery;
+    this.setState((state) => ({
+      showingGallery: show,
+    }));
+  }
+
   // choose sampleImages more deliberately (might be a stretch goal)
-  const sampleImages = images.slice(0, 3);
-  return (
-    <Wrapper>
-      <Background>
-        <SampleImages images={sampleImages} onClick={openGallery} />
-      </Background>
-      <Header>
-        <HomeDetails tags={tags} />
-        <HomeOptions saved={saved} btnColor="#007882" openGallery={openGallery} handleSaveClick={handleSaveClick} />
-      </Header>
-      <Footer>
-        <GallerySize size={images.length} openGallery={openGallery} />
-      </Footer>
-    </Wrapper>
-  );
-};
+  render() {
+    const { currentHome, showingGallery } = this.state;
+    const { images, tags } = currentHome;
+    const sampleImages = images.slice(0, 3);
+    return (
+      <Wrapper>
+        <Background>
+          <SampleImages images={sampleImages} onClick={this.handleGalleryDisplay} />
+        </Background>
+        <Header>
+          <HomeDetails tags={tags} />
+          <HomeOptions saved={this.props.saved} btnColor="#007882" handleSaveClick={this.props.handleSaveClick} />
+        </Header>
+        <Footer>
+          <GallerySize size={images.length} onClick={this.handleGalleryDisplay} />
+        </Footer>
+        {/* <GalleryWrapper home={currentHome} saved={saved} showingGallery={showingGallery} /> */}
+      </Wrapper>
+    );
+  }
+}
 
 export default GalleryPreview;

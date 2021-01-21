@@ -45,8 +45,7 @@ class App extends React.Component {
 
   handleSaveClick(event) {
     event.preventDefault();
-    let isSaved = !this.state.saved;
-    console.log('i got clicked');
+    const isSaved = !this.state.saved;
     this.setState((state) => ({
       saved: isSaved,
     }));
@@ -61,9 +60,8 @@ class App extends React.Component {
     if (currentHome.images) {
       return (
         <AppWrapper>
-          <GalleryPreview images={currentHome.images} saved={saved} tags={currentHome.tags} openGallery={this.openGallery} handleSaveClick={this.handleSaveClick} />
+          <GalleryPreview  saved={saved} currentHome={currentHome} handleSaveClick={this.handleSaveClick} />
           <HomeInfo home={currentHome} />
-          {/* <GalleryModal home={currentHome} saved={saved} /> */}
         </AppWrapper>
       );
     }
