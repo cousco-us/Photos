@@ -48,6 +48,30 @@ const OptionButton = styled.button`
   font-family: Roboto, "Segoe UI Bold", Arial, sans-serif;
   color: #007882;
 `;
+
+const Symbol = styled.div`
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  vertical-align: middle;
+`;
+
+const CloseBtn = ({ color, handleClose }) => {
+  const closeBtn = <svg className="svg" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M27.816 25.935l-1.881 1.88-21.83-21.83 1.88-1.88 21.83 21.83zm-1.881-21.83l1.88 1.88-21.83 21.83-1.88-1.88 21.83-21.83z" fill={color}></path></svg>;
+  return (
+    <Symbol onClick={handleClose}>
+      {closeBtn}
+    </Symbol>
+  );
+};
+
+const Right = styled.span`
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: .7em;
+`;
 const DisplayChoice = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -95,11 +119,12 @@ const appRoot = document.getElementById('app');
 class GalleryModal extends React.Component {
   constructor(props) {
     super(props);
-    this.el = document.createElement('div');
+    this.el = document.createElement('Wrapper');
+    // this.el.setAttribute('style', 'overflow: scroll');
   }
 
   componentDidMount() {
-    modalRoot.setAttribute('style', "position: fixed; top: 50%; left: 50%;transform: translate(-50%, -50%); width: 100%; height: 100%;");
+    modalRoot.setAttribute('style', 'position: fixed; top: 50%; left: 50%;transform: translate(-50%, -50%); width: 100%; height: 100%;');
     modalRoot.style['background-color'] = 'rgba(0, 0, 0, 0.6)';
     appRoot.style.filter = 'blur(20px)';
     modalRoot.appendChild(this.el);
@@ -126,7 +151,10 @@ class GalleryModal extends React.Component {
                 Photos
               </OptionButton>
             </DisplayChoice>
-            <HomeOptions saved={saved} color="#3b4144" />
+            <Right>
+              <HomeOptions saved={saved} color="#3b4144" />
+              <CloseBtn color="#3b4144" handleClose={this.props.close} />
+            </Right>
           </NavBar>
           <HomeDetails>
             {`${address.line1} | $${price} | ${numBeds} Beds ${numBaths} Baths`}
