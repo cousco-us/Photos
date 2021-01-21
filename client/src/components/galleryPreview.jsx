@@ -8,12 +8,13 @@ import GallerySize from './galleryPreviewComponents/gallerySize.jsx';
 
 const Wrapper = styled.div`
   /* max-width: 992px;
-  max-height: 500px;
   align-content: center; */
   max-height: 460px;
-  max-width: 952px;
+  margin-bottom: 20px;
+  flex: 1;
+  /*max-width: 952px; */
+  /* margin: auto; */
   width: 100%;
-  margin: auto;
   border-radius: 8px;
   overflow: hidden;
 `;
@@ -55,7 +56,7 @@ const GalleryPreview = ({ images, tags, saved, openGallery }) => {
       </Background>
       <Header>
         <HomeDetails tags={tags} />
-        <HomeOptions saved={saved} btnColor="#007882"/>
+        <HomeOptions saved={saved} btnColor="#007882" />
       </Header>
       <Footer>
         <GallerySize size={images.length} openGallery={openGallery} />

@@ -3,13 +3,18 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import styled from 'styled-components';
 import GalleryPreview from './galleryPreview.jsx';
-// import GalleryModal from './galleryModal.jsx';
+import GalleryModal from './galleryModal.jsx';
 import HomeInfo from './homeInfo.jsx';
 
-// const appRoot = document.getElementById('app');
-// appRoot.style.filter = '';
+const appRoot = document.getElementById('app');
+appRoot.style.filter = '';
+appRoot.style['background-color'] = 'rgba(0, 0, 0, 0)';
 const AppWrapper = styled.div`
-  display: grid;
+  display: block;
+  /* max-height: 80%; */
+  max-width: 952px;
+  margin: auto;
+  flex-direction: column;
 `;
 
 class App extends React.Component {

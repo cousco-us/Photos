@@ -14,7 +14,7 @@ const OptionButton = styled.button`
   flex: 1;
   height: 40px;
   max-width: 108px;
-  background: transparent;
+  background: white;
   display: inline-block;
   align-items: center;
   border-radius: 10px;

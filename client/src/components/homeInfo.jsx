@@ -3,26 +3,26 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-  max-height: 460px;
-  max-width: 952px;
-  width: 50%;
-  margin-left: 16%;
+  width: 60%;
   padding: 10px;
+  padding-left: 20px;
   display: flex;
+  justify-content: space-between;
   font-family: Roboto, "Segoe UI Bold", Arial, sans-serif;
 
 `;
 
 const LeftBox = styled.div`
-  flex: 1;
+  flex: 2;
   display: flex;
   flex-direction: column;
-  padding-right: 10%;
-`;
+  `;
 
 LeftBox.displayName = 'LeftBox';
 const RightBox = styled.div`
   flex: 1;
+  display: flex;
+  justify-content: flex-end;
 `;
 RightBox.displayName = 'RightBox';
 const Address = styled.div`
@@ -40,7 +40,7 @@ const Floorplan = styled.span`
   line-height: 24px;
   padding-top: 20px;
   justify-content: space-between;
-  padding-right: 10%;
+  padding-right: 25%;
 `;
 Floorplan.displayName = 'Floorplan';
 const LineOne = styled.span`
