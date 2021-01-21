@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -50,16 +51,21 @@ const Share = ({ color }) => {
       {share}
     </Symbol>
   );
-}
+};
 
-const HomeOptions = ({ saved, btnColor }) => {
+const wasClicked = (event) => {
+  event.preventDefault();
+  console.log('i got clicked');
+};
+
+const HomeOptions = ({ saved, btnColor, handleSaveClick }) => {
   let hasBeenSavedClass = 'not-saved';
   if (saved) {
     hasBeenSavedClass = 'saved';
   }
   return (
-    <Wrapper>
-      <OptionButton type="submit">
+    <Wrapper onClick={handleSaveClick}>
+      <OptionButton type="submit" onSubmit={handleSaveClick}>
         <Heart saved={saved} color={btnColor}/> Save
       </OptionButton>
       <OptionButton type="submit">

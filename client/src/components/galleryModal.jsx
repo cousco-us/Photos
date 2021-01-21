@@ -4,15 +4,11 @@ import styled from 'styled-components';
 import HomeOptions from './galleryPreviewComponents/homeOptions.jsx';
 
 const modalRoot = document.getElementById('modal-root');
-const appRoot = document.getElementById('app');
 const Modal = styled.div`
   z-index: 100;
   position: fixed;
   inset: 0;
 `;
-modalRoot.setAttribute('style', "position: fixed; top: 50%; left: 50%;transform: translate(-50%, -50%); width: 100%; height: 100%;");
-appRoot.style.filter = 'blur(20px)';
-modalRoot.style['background-color'] = 'rgba(0, 0, 0, 0.6)';
 
 const Wrapper = styled.div`
   margin: 3%;

@@ -11,7 +11,6 @@ const appRoot = document.getElementById('app');
 // appRoot.style['background-color'] = 'rgba(0, 0, 0, 0)';
 const AppWrapper = styled.div`
   display: block;
-  /* max-height: 80%; */
   max-width: 952px;
   margin: auto;
   flex-direction: column;
@@ -26,6 +25,7 @@ class App extends React.Component {
     };
     const { currentHome, saved } = this.state;
     this.setState = this.setState.bind(this);
+    this.handleSaveClick = this.handleSaveClick.bind(this);
   }
 
   componentDidMount() {
@@ -43,6 +43,15 @@ class App extends React.Component {
       });
   }
 
+  handleSaveClick(event) {
+    event.preventDefault();
+    let isSaved = !this.state.saved;
+    console.log('i got clicked');
+    this.setState((state) => ({
+      saved: isSaved,
+    }));
+  }
+
   openGallery() {
     console.log('You tried to open the gallery!');
   }
@@ -52,9 +61,9 @@ class App extends React.Component {
     if (currentHome.images) {
       return (
         <AppWrapper>
-          <GalleryPreview images={currentHome.images} saved={saved} tags={currentHome.tags} openGallery={this.openGallery} />
+          <GalleryPreview images={currentHome.images} saved={saved} tags={currentHome.tags} openGallery={this.openGallery} handleSaveClick={this.handleSaveClick} />
           <HomeInfo home={currentHome} />
-          <GalleryModal home={currentHome} saved={saved} />
+          {/* <GalleryModal home={currentHome} saved={saved} /> */}
         </AppWrapper>
       );
     }
