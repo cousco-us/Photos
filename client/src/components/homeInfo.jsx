@@ -19,15 +19,19 @@ const LeftBox = styled.div`
   flex-direction: column;
   padding-right: 10%;
 `;
+
+LeftBox.displayName = 'LeftBox';
 const RightBox = styled.div`
   flex: 1;
 `;
+RightBox.displayName = 'RightBox';
 const Address = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 `;
+Address.displayName = 'Address';
 const Floorplan = styled.span`
   flex: 1;
   display: flex;
@@ -38,6 +42,7 @@ const Floorplan = styled.span`
   justify-content: space-between;
   padding-right: 10%;
 `;
+Floorplan.displayName = 'Floorplan';
 const LineOne = styled.span`
   flex: 1;
   color:#3b4144;
@@ -47,6 +52,7 @@ const LineOne = styled.span`
   letter-spacing: -0.1px;
   line-height: 32px;
 `;
+LineOne.displayName = 'LineOne';
 const LineTwo = styled.span`
   flex: 1;
   color: #3b4144;
@@ -54,7 +60,7 @@ const LineTwo = styled.span`
   letter-spacing: -0.1px;
   line-height: 24px;
 `;
-
+LineTwo.displayName = 'LineTwo';
 //refactor to have symbol defined externally
 const Symbol = styled.div`
   width: 24px;
@@ -96,7 +102,7 @@ const HomeInfo = ({ home }) => {
   return (
     <Wrapper>
       <LeftBox>
-        <Address>
+        <Address className="address">
           <LineOne>
             {address.line1}
           </LineOne>
@@ -132,4 +138,3 @@ const HomeInfo = ({ home }) => {
 };
 
 export default HomeInfo;
-
