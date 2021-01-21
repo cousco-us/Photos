@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
-import BackdropFilter from "react-backdrop-filter";
 import HomeOptions from './galleryPreviewComponents/homeOptions.jsx';
 
 const modalRoot = document.getElementById('modal-root');

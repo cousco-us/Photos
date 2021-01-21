@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import styled from 'styled-components';
 import GalleryPreview from './galleryPreview.jsx';
-import GalleryModal from './galleryModal.jsx';
+// import GalleryModal from './galleryModal.jsx';
 import HomeInfo from './homeInfo.jsx';
 
 // const appRoot = document.getElementById('app');
@@ -23,19 +23,21 @@ class App extends React.Component {
     this.setState = this.setState.bind(this);
   }
 
-  async componentDidMount() {
-    await axios.get('http://localhost:3000/api/photoGallery/60022e8d39ee0a8615c3f457')
-      .then(({ data }) => {
-        const currentHome = data[0];
-        const { saved } = currentHome;
-        this.setState((state) => ({
-          currentHome,
-          saved,
-        }));
-      })
-      .catch((err) => {
-        console.log('Error getting currentHome on mount: ', err);
-      });
+  componentDidMount() {
+    return new Promise(resolve => {
+      axios.get('http://localhost:3000/api/photoGallery/60022e8d39ee0a8615c3f457')
+        .then(({ data }) => {
+          const currentHome = data[0];
+          const { saved } = currentHome;
+          this.setState((state) => ({
+            currentHome,
+            saved,
+          }));
+        })
+        .catch((err) => {
+          console.log('Error getting currentHome on mount: ', err);
+        });
+    });
   }
 
   openGallery() {
@@ -49,7 +51,7 @@ class App extends React.Component {
         <AppWrapper>
           <GalleryPreview images={currentHome.images} saved={saved} tags={currentHome.tags} openGallery={this.openGallery} />
           <HomeInfo home={currentHome} />
-          <GalleryModal home={currentHome} saved={saved} />
+          {/* <GalleryModal home={currentHome} saved={saved} /> */}
         </AppWrapper>
       );
     }
