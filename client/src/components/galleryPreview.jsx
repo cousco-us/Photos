@@ -79,7 +79,7 @@ class GalleryPreview extends React.Component {
         <Footer>
           <GallerySize size={images.length} handleGalleryDisplay={this.handleGalleryDisplay} />
         </Footer>
-        <GalleryWrapper home={currentHome} saved={this.props.saved} showingGallery={showingGallery} close={this.handleGalleryDisplay} />
+        <GalleryWrapper home={currentHome} saved={this.props.saved} showingGallery={showingGallery} close={this.handleGalleryDisplay} handleSaveClick={this.props.handleSaveClick}/>
       </Wrapper>
     );
   }

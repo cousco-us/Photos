@@ -59,13 +59,14 @@ const wasClicked = (event) => {
 };
 
 const HomeOptions = ({ saved, btnColor, handleSaveClick }) => {
+  debugger;
   let hasBeenSavedClass = 'not-saved';
   if (saved) {
     hasBeenSavedClass = 'saved';
   }
   return (
     <Wrapper>
-      <OptionButton type="submit" onSubmit={handleSaveClick}>
+      <OptionButton type="submit" onClick={handleSaveClick}>
         <Heart saved={saved} color={btnColor}/> Save
       </OptionButton>
       <OptionButton type="submit">

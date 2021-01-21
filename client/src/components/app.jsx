@@ -51,7 +51,6 @@ class App extends React.Component {
 
   closeGallery(event) {
     event.preventDefault();
-    console.log('BLASSDA');
     this.setState((state) => ({
       showingGallery: false,
     }));
@@ -61,7 +60,7 @@ class App extends React.Component {
     const { currentHome, saved, showingGallery } = this.state;
     if (currentHome.images) {
       return (
-        <AppWrapper onClick={this.closeGallery.bind(this)}>
+        <AppWrapper>
           <GalleryPreview  saved={saved} currentHome={currentHome} handleSaveClick={this.handleSaveClick} showingGallery={showingGallery} />
           <HomeInfo home={currentHome} />
         </AppWrapper>
