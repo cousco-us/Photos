@@ -136,21 +136,3 @@ describe('Gallery Preview', () => {
     expect(wrapper.find('LineTwo').length).toEqual(1);
   });
 });
-
-// describe('HomeInfo', () => {
-//   it('renders content on mount', async () => {
-//     const wrapper = shallow(<App />);
-//     await wrapper.instance().componentDidMount();
-//     await setTimeout(() => {
-//       expect(wrapper.find('div .homeInfo').length).toEqual(1);
-//     }, 0);
-//     // setTimeout(() => {
-//     //   expect(wrapper.find('div .homeInfo').length).toEqual(1);
-//     //   expect(wrapper.find('div .address').length).toEqual(1);
-//     //   expect(wrapper.find('span .floorplan').length).toEqual(1);
-//     //   expect(wrapper.find('div .price').length).toEqual(0);
-//     //   expect(false).toEqual(true);
-//     //   done();
-//     // }, 4000);
-//   });
-// });
