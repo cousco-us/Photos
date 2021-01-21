@@ -72,7 +72,6 @@ const HomeDetails = styled.span`
 `;
 const Images = styled.span`
   flex: 1;
-  margin-bottom: 10px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -83,14 +82,16 @@ const Images = styled.span`
 const ImageRow = styled.span`
   max-width: 100%;
   display: flex;
+  padding: 0;
   justify-content: space-between;
 `;
 
 const Image = styled.img`
   max-height: 550px;
-  max-width: ${(props) => (`${(99 / Number(props.num))}%`)};
+  max-width: ${(props) => (`${(100 / Number(props.num))}%`)};
   flex: 1;
-  padding: 0 8px 8px 0;
+  object-fit: cover;
+  padding: ${(props) => ((props.last === 'mmhmm') ? '0 0 8px 0' : '0 8px 8px 0')};
 `;
 
 const GalleryModal = (({ home, saved }) => {
@@ -114,16 +115,16 @@ const GalleryModal = (({ home, saved }) => {
         </HomeDetails>
         <Images>
           <ImageRow>
-            <Image src={images[0]} num="1" alt="gallery-pic" />
+            <Image src={images[0]} num="1" alt="gallery-pic" last="mmhmm" />
           </ImageRow>
           <ImageRow>
-            {images.slice(1, 4).map((image) => (
-              <Image src={image} num="3" alt="gallery-pic" />
+            {images.slice(1, 4).map((image, i, arr) => (
+              <Image src={image} num="3" alt="gallery-pic" last={((i === arr.length - 1) ? 'mmhmm' : undefined)} />
             ))}
           </ImageRow>
           <ImageRow>
-            {images.slice(5, 7).map((image) => (
-              <Image src={image} num="2" alt="gallery-pic" />
+            {images.slice(5, 7).map((image, i, arr) => (
+              <Image src={image} num="2" alt="gallery-pic" last={((i === arr.length - 1) ? 'mmhmm' : undefined)} />
             ))}
           </ImageRow>
         </Images>
