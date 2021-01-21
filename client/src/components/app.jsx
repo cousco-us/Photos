@@ -28,6 +28,7 @@ class App extends React.Component {
     this.setState = this.setState.bind(this);
   }
 
+<<<<<<< HEAD
   componentDidMount() {
     return new Promise(resolve => {
       axios.get('http://localhost:3000/api/photoGallery/60022e8d39ee0a8615c3f457')
@@ -43,6 +44,21 @@ class App extends React.Component {
           console.log('Error getting currentHome on mount: ', err);
         });
     });
+=======
+  async componentDidMount() {
+    await axios.get('http://localhost:3000/api/photoGallery/60022e8d39ee0a8615c3f457')
+      .then(({ data }) => {
+        const currentHome = data[0];
+        const { saved } = currentHome;
+        this.setState((state) => ({
+          currentHome,
+          saved,
+        }));
+      })
+      .catch((err) => {
+        console.log('Error getting currentHome on mount: ', err);
+      });
+>>>>>>> 1c1f2cf385b976ce7a16188bb3414b2e95acba55
   }
 
   openGallery() {
