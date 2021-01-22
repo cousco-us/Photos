@@ -2,37 +2,32 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 
-import HomeOptions from './galleryPreviewComponents/homeOptions.jsx';
+import HomeOptions from './galleryPreviewComponents/homeOptions';
 
 const Wrapper = styled.div`
   display: flex;
-  background-color: blue;
-  border: 2px solid red;
-  max-height: 87%;
-  max-width: 92%;
-  /* margin: 3%;
-  border-radius: 8px;
+  height: 100%;
+  max-width: 96%;
   flex-direction: column;
-  font-family: Roboto, "Segoe UI Bold", Arial, sans-serif;*/
+  margin: 1% auto;
+  font-family: Roboto, "Segoe UI Bold", Arial, sans-serif;
 `;
 
 const NavBar = styled.span`
-  /* flex: 1; */
   display: flex;
   width: 100%;
   justify-content: space-between;
   padding-bottom: 8px;
-  border-bottom: 1px solid #dfdfdf;
 `;
 
 const HomeDetails = styled.span`
-  flex: 1;
+  flex: 5;
   display: flex;
   width: 100%;
   padding: 8px;
-  color: #3b4144;
+  color: #fff;
   display: inline;
-  font-size: 14px;
+  font-size: 24px;
   font-weight: 700;
   letter-spacing: -0.1px;
   line-height: 20.02px;
@@ -59,17 +54,22 @@ const Right = styled.span`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  flex-basis: 25%;
   padding-right: .7em;
 `;
 
-const PhotoWrapper = styled.span`
+const PhotoWrapper = styled.div`
   flex: 1;
+  padding-bottom: 15px;
+  margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
 `;
 
 const Photo = styled.img`
-
+  max-width: 100%;
+  flex-grow: 4;
+  /* flex: 2; */
 `;
 
 const SideArrow = styled.span`
@@ -111,7 +111,6 @@ class PhotoModal extends React.Component {
     modalRoot.setAttribute('style', 'position: fixed; top: 50%; left: 50%;transform: translate(-50%, -50%); width: 100%; height: 100%;');
     modalRoot.style['background-color'] = 'rgba(0, 0, 0, 0.85)';
     modalRoot.appendChild(this.el);
-    debugger;
   }
 
   componentWillUnmount() {
@@ -127,7 +126,6 @@ class PhotoModal extends React.Component {
     const { numBeds, numBaths } = floorplan;
     return ReactDOM.createPortal((
       <Wrapper>
-        <div>stuff</div>
         <NavBar>
           <HomeDetails>
             {`${address.line1} | $${price} | ${numBeds} Beds ${numBaths} Baths`}
@@ -139,7 +137,7 @@ class PhotoModal extends React.Component {
         </NavBar>
         <PhotoWrapper>
           <SideArrow />
-          <Photo />
+          <Photo src={images[0]} num="1" alt="gallery-pic" />
           <SideArrow />
         </PhotoWrapper>
         <Footer>
