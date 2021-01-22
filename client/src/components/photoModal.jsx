@@ -61,19 +61,27 @@ const SideArrow = ({ color }) => {
 const Right = styled.span`
   flex: 1;
   display: flex;
-  justify-content: flex-end;
   align-items: center;
+  justify-content: flex-end;
   flex-basis: 25%;
+  padding-right: .7em;
+`;
+
+const Bottom = styled.span`
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
   padding-right: .7em;
 `;
 
 const PhotoWrapper = styled.div`
   flex: 1;
   padding-bottom: 15px;
+  height: 95%;
   width: 80%;
   margin-bottom: 10px;
   display: flex;
-  align-self: center;
+  align-self: flex-start;
 `;
 
 const Photo = styled.img`
@@ -102,8 +110,9 @@ const Footer = styled.span`
   /* flex: 1; */
   /* width: 100%; */
   display: flex;
-  justify-content: flex-start;
-  padding: 0 0 8px 8px;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin: 30px;
 `;
 
 const Progress = styled.div`
@@ -120,7 +129,8 @@ class PhotoModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentPhoto: '',
+      currentPhoto: this.props.home.images[0],
+      currentPhotoIndex: 1,
     };
     this.el = document.createElement('Wrapper');
   }
@@ -138,6 +148,7 @@ class PhotoModal extends React.Component {
   }
 
   render() {
+    const { currentPhoto, currentPhotoIndex } = this.state;
     const { home, saved, close, handleSaveClick } = this.props;
     const { details, images } = home;
     const { floorplan, price, address } = details;
@@ -153,14 +164,16 @@ class PhotoModal extends React.Component {
             <CloseBtn color="#3b4144" handleClose={this.props.close} />
           </Right>
         </NavBar>
-        <PhotoWrapper>
-          <ChangePhoto rotation="180"><SideArrow color="#fff" /></ChangePhoto>
-          <Photo src={images[0]} num="1" alt="gallery-pic" />
-          <ChangePhoto rotation="0"><SideArrow color="#fff" /></ChangePhoto>
-        </PhotoWrapper>
-        <Footer>
-          <Progress total={21} current={2} />
-        </Footer>
+        <Bottom>
+          <Footer>
+            <Progress> {`${currentPhotoIndex} of ${images.length}`} </Progress>
+          </Footer>
+          <PhotoWrapper>
+            <ChangePhoto rotation="180"><SideArrow color="#fff" /></ChangePhoto>
+            <Photo src={currentPhoto} num={currentPhotoIndex} alt="photo-modal-display" />
+            <ChangePhoto rotation="0"><SideArrow color="#fff" /></ChangePhoto>
+          </PhotoWrapper>
+        </Bottom>
       </Wrapper>
     ), this.el);
   }
