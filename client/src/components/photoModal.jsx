@@ -78,10 +78,11 @@ const PhotoWrapper = styled.div`
   flex: 1;
   padding-bottom: 15px;
   height: 95%;
-  width: 80%;
+  max-width: 90%;
   margin-bottom: 10px;
   display: flex;
-  align-self: flex-start;
+  align-self: center;
+  justify-content: center;
 `;
 
 const Photo = styled.img`
@@ -112,7 +113,7 @@ const Footer = styled.span`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  margin: 30px;
+  margin: 30px 0 30px 30px;
 `;
 
 const Progress = styled.div`
@@ -144,6 +145,7 @@ class PhotoModal extends React.Component {
   componentWillUnmount() {
     modalRoot.removeChild(this.el);
     modalRoot.style['background-color'] = 'rgba(0, 0, 0, .6)';
+    modalRoot.setAttribute('style', "width: 0; height: 0;");
     // modalRoot.setAttribute('style', "width: 0; height: 0;");
   }
 
@@ -157,11 +159,11 @@ class PhotoModal extends React.Component {
       <Wrapper>
         <NavBar>
           <HomeDetails>
-            {`${address.line1} | $${price} | ${numBeds} Beds ${numBaths} Baths`}
+            {`${address.line1} | ${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumSignificantDigits: 5 }).format(price)} | ${numBeds} Beds ${numBaths} Baths`}
           </HomeDetails>
           <Right>
             <HomeOptions saved={saved} color="#3b4144" handleSaveClick={handleSaveClick}/>
-            <CloseBtn color="#3b4144" handleClose={this.props.close} />
+            <CloseBtn color="#fff" handleClose={this.props.close} />
           </Right>
         </NavBar>
         <Bottom>

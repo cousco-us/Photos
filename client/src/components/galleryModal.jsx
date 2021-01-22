@@ -120,8 +120,12 @@ const appRoot = document.getElementById('app');
 class GalleryModal extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      showingPhotoModal: false,
+    };
     this.el = document.createElement('Wrapper');
     // this.el.setAttribute('style', 'overflow: scroll');
+    this.handlePhotoModalDisplay = this.handlePhotoModalDisplay.bind(this);
   }
 
   componentDidMount() {
@@ -136,6 +140,14 @@ class GalleryModal extends React.Component {
     modalRoot.style['background-color'] = 'rgba(0, 0, 0, 0)';
     appRoot.style.filter = 'none';
     modalRoot.setAttribute('style', "width: 0; height: 0;");
+  }
+
+  handlePhotoModalDisplay(event) {
+    event.preventDefault();
+    const show = !this.state.showingPhotoModal;
+    this.setState((state) => ({
+      showingPhotoModal: show,
+    }));
   }
 
   render() {
@@ -158,9 +170,9 @@ class GalleryModal extends React.Component {
             </Right>
           </NavBar>
           <HomeDetails>
-            {`${address.line1} | $${price} | ${numBeds} Beds ${numBaths} Baths`}
+            {`${address.line1} | ${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumSignificantDigits: 5 }).format(price)} | ${numBeds} Beds ${numBaths} Baths`}
           </HomeDetails>
-          <Images>
+          <Images onClick={this.handlePhotoModalDisplay}>
             <ImageRow>
               <Image src={images[0]} num="1" alt="gallery-pic" last="mmhmm" />
             </ImageRow>
@@ -175,7 +187,7 @@ class GalleryModal extends React.Component {
               ))}
             </ImageRow>
           </Images>
-          <PhotoModalWrapper home={home} saved={this.props.saved} showingPhotoModal={showingPhotoModal} close={this.handlePhotoModalDisplay} handleSaveClick={this.props.handleSaveClick}/>
+          <PhotoModalWrapper home={home} saved={this.props.saved} showingPhotoModal={this.state.showingPhotoModal} close={this.handlePhotoModalDisplay} handleSaveClick={this.props.handleSaveClick}/>
         </Wrapper>
       ),
       this.el,
@@ -183,10 +195,10 @@ class GalleryModal extends React.Component {
   }
 };
 
-const GalleryWrapper = ({home, saved, showingGallery, close, handleSaveClick, showingPhotoModal}) => {
+const GalleryWrapper = ({home, saved, showingGallery, closeGalleryModal, handleSaveClick }) => {
   if (showingGallery) {
     return (
-      <GalleryModal home={home} saved={saved} close={close} handleSaveClick={handleSaveClick} showingPhotoModal={showingPhotoModal} />
+      <GalleryModal home={home} saved={saved} close={closeGalleryModal} handleSaveClick={handleSaveClick} />
     );
   }
   return <div />;

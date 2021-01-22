@@ -50,11 +50,11 @@ class GalleryPreview extends React.Component {
     this.state = {
       currentHome: this.props.currentHome,
       showingGallery: false,
-      showingPhotoModal: true,
+      // showingPhotoModal: true,
     };
     this.setState = this.setState.bind(this);
     this.handleGalleryDisplay = this.handleGalleryDisplay.bind(this);
-    this.handlePhotoModalDisplay = this.handlePhotoModalDisplay.bind(this);
+    // this.handlePhotoModalDisplay = this.handlePhotoModalDisplay.bind(this);
   }
 
   handleGalleryDisplay(event) {
@@ -65,17 +65,17 @@ class GalleryPreview extends React.Component {
     }));
   }
 
-  handlePhotoModalDisplay(event) {
-    event.preventDefault();
-    const show = !this.state.showingPhotoModal;
-    this.setState((state) => ({
-      showingPhotoModal: show,
-    }));
-  }
+  // handlePhotoModalDisplay(event) {
+  //   event.preventDefault();
+  //   const show = !this.state.showingPhotoModal;
+  //   this.setState((state) => ({
+  //     showingPhotoModal: show,
+  //   }));
+  // }
 
   // choose sampleImages more deliberately (might be a stretch goal)
   render() {
-    const { currentHome, showingGallery, showingPhotoModal } = this.state;
+    const { currentHome, showingGallery } = this.state;
     const { images, tags } = currentHome;
     const sampleImages = images.slice(0, 3);
     return (
@@ -90,7 +90,7 @@ class GalleryPreview extends React.Component {
         <Footer>
           <GallerySize size={images.length} handleGalleryDisplay={this.handleGalleryDisplay} />
         </Footer>
-        <GalleryWrapper home={currentHome} saved={this.props.saved} showingGallery={showingGallery} showingPhotoModal={showingPhotoModal} close={this.handleGalleryDisplay} handleSaveClick={this.props.handleSaveClick}/>
+        <GalleryWrapper home={currentHome} saved={this.props.saved} showingGallery={showingGallery} closeGalleryModal={this.handleGalleryDisplay} handleSaveClick={this.props.handleSaveClick}/>
       </Wrapper>
     );
   }
