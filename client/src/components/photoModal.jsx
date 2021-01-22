@@ -17,7 +17,7 @@ const NavBar = styled.span`
   display: flex;
   width: 100%;
   justify-content: space-between;
-  padding-bottom: 8px;
+  padding-bottom: 15px;
 `;
 
 const HomeDetails = styled.span`
@@ -49,6 +49,15 @@ const CloseBtn = ({ color, handleClose }) => {
   );
 };
 
+const SideArrow = ({ color }) => {
+  const sideArrow = <svg class="svg" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M17.65 16.513l-7.147-7.055 1.868-1.893 9.068 8.951-9.069 8.927-1.866-1.896z" fill={color}></path></svg>;
+  return (
+    <Symbol>
+      {sideArrow}
+    </Symbol>
+  );
+};
+
 const Right = styled.span`
   flex: 1;
   display: flex;
@@ -61,23 +70,32 @@ const Right = styled.span`
 const PhotoWrapper = styled.div`
   flex: 1;
   padding-bottom: 15px;
+  width: 80%;
   margin-bottom: 10px;
   display: flex;
-  justify-content: space-between;
+  align-self: center;
 `;
 
 const Photo = styled.img`
-  max-width: 100%;
-  flex-grow: 4;
-  /* flex: 2; */
+  max-width: 80%;
+  object-fit: cover;
+  padding: 0 2em;
+  //trulia has the buttons stay stationary on the screen
 `;
 
-const SideArrow = styled.span`
+const ChangePhoto = styled.div`
   flex: 1;
-  display: block;
-  margin: auto;
-  height: 48px;
-  width: 48px;
+  flex-basis: auto;
+  transform: ${(props) => (`rotate(${props.rotation}deg)`)};
+  display: flex;
+  border-radius: 50%;
+  background-color: #3b4144;
+  margin: auto 10px;
+  /* padding-top: 15px; */
+  padding: 20px;
+  max-height: 24px;
+  max-width: 24px;
+  justify-content: center;
 `;
 
 const Footer = styled.span`
@@ -136,9 +154,9 @@ class PhotoModal extends React.Component {
           </Right>
         </NavBar>
         <PhotoWrapper>
-          <SideArrow />
+          <ChangePhoto rotation="180"><SideArrow color="#fff" /></ChangePhoto>
           <Photo src={images[0]} num="1" alt="gallery-pic" />
-          <SideArrow />
+          <ChangePhoto rotation="0"><SideArrow color="#fff" /></ChangePhoto>
         </PhotoWrapper>
         <Footer>
           <Progress total={21} current={2} />
