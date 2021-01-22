@@ -27,6 +27,10 @@ const OptionButton = styled.button`
   font-family: Roboto, "Segoe UI Bold", Arial, sans-serif;
   color: #3b4144;
 `;
+
+const changeBackground = (event, color) => {
+  event.target.setAttribute('style', `background-color: ${color}`);
+};
 const Symbol = styled.div`
   width: 24px;
   height: 24px;
@@ -51,11 +55,6 @@ const Share = ({ color }) => {
       {share}
     </Symbol>
   );
-};
-
-const wasClicked = (event) => {
-  event.preventDefault();
-  console.log('i got clicked');
 };
 
 const HomeOptions = ({ saved, btnColor, handleSaveClick }) => {
