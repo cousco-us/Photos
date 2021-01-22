@@ -58,7 +58,6 @@ const Share = ({ color }) => {
 };
 
 const HomeOptions = ({ saved, btnColor, handleSaveClick }) => {
-  debugger;
   let hasBeenSavedClass = 'not-saved';
   if (saved) {
     hasBeenSavedClass = 'saved';

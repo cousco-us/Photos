@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import HomeOptions from './galleryPreviewComponents/homeOptions.jsx';
+import PhotoModalWrapper from './photoModal.jsx';
 
 // const modalRoot = document.getElementById('modal-root');
 const Modal = styled.div`
@@ -113,7 +114,7 @@ const Image = styled.img`
   padding: ${(props) => ((props.last === 'mmhmm') ? '0 0 8px 0' : '0 8px 8px 0')};
 `;
 
-const modalRoot = document.getElementById('modal-root');
+const modalRoot = document.getElementById('gallery-modal-root');
 const appRoot = document.getElementById('app');
 
 class GalleryModal extends React.Component {
@@ -138,7 +139,7 @@ class GalleryModal extends React.Component {
   }
 
   render() {
-    const { home, saved, close, handleSaveClick } = this.props;
+    const { home, saved, close, handleSaveClick, showingPhotoModal } = this.props;
     const { details, images } = home;
     const { floorplan, price, address } = details;
     const { numBeds, numBaths } = floorplan;
@@ -152,7 +153,7 @@ class GalleryModal extends React.Component {
               </OptionButton>
             </DisplayChoice>
             <Right>
-              <HomeOptions saved={saved} color="#3b4144" handleSaveClick={handleSaveClick}/>
+              <HomeOptions saved={saved} color="#3b4144" handleSaveClick={handleSaveClick} />
               <CloseBtn color="#3b4144" handleClose={this.props.close} />
             </Right>
           </NavBar>
@@ -174,6 +175,7 @@ class GalleryModal extends React.Component {
               ))}
             </ImageRow>
           </Images>
+          <PhotoModalWrapper home={home} saved={this.props.saved} showingPhotoModal={showingPhotoModal} close={this.handlePhotoModalDisplay} handleSaveClick={this.props.handleSaveClick}/>
         </Wrapper>
       ),
       this.el,
@@ -181,10 +183,10 @@ class GalleryModal extends React.Component {
   }
 };
 
-const GalleryWrapper = ({home, saved, showingGallery, close, handleSaveClick}) => {
+const GalleryWrapper = ({home, saved, showingGallery, close, handleSaveClick, showingPhotoModal}) => {
   if (showingGallery) {
     return (
-      <GalleryModal home={home} saved={saved} close={close} handleSaveClick={handleSaveClick}/>
+      <GalleryModal home={home} saved={saved} close={close} handleSaveClick={handleSaveClick} showingPhotoModal={showingPhotoModal} />
     );
   }
   return <div />;

@@ -19,7 +19,8 @@ class App extends React.Component {
     this.state = {
       currentHome: {},
       saved: false,
-      showingGallery: false,
+      // showingGallery: false,
+      // showingPhotoModal: false,
     };
     const { currentHome, saved } = this.state;
     this.setState = this.setState.bind(this);
@@ -49,19 +50,26 @@ class App extends React.Component {
     }));
   }
 
-  closeGallery(event) {
-    event.preventDefault();
-    this.setState((state) => ({
-      showingGallery: false,
-    }));
-  }
+  // closeGallery(event) {
+  //   event.preventDefault();
+  //   this.setState((state) => ({
+  //     showingGallery: false,
+  //   }));
+  // }
+
+  // closePhotoModal(event) {
+  //   event.preventDefault();
+  //   this.setState((state) => ({
+  //     showingPhotoModal: false,
+  //   }));
+  // }
 
   render() {
-    const { currentHome, saved, showingGallery } = this.state;
+    const { currentHome, saved, showingGallery, showingPhotoModal } = this.state;
     if (currentHome.images) {
       return (
         <AppWrapper>
-          <GalleryPreview  saved={saved} currentHome={currentHome} handleSaveClick={this.handleSaveClick} showingGallery={showingGallery} />
+          <GalleryPreview  saved={saved} currentHome={currentHome} handleSaveClick={this.handleSaveClick} />
           <HomeInfo home={currentHome} />
         </AppWrapper>
       );
