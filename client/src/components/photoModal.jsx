@@ -142,6 +142,8 @@ class PhotoModal extends React.Component {
       currentPhoto: this.props.home.images[this.props.index],
       currentPhotoIndex: this.props.index + 1,
     };
+    this.handleNextClick = this.handleNextClick.bind(this);
+    this.handlePrevClick = this.handlePrevClick.bind(this);
     this.el = document.createElement('Wrapper');
   }
 
@@ -156,6 +158,36 @@ class PhotoModal extends React.Component {
     modalRoot.style['background-color'] = 'rgba(0, 0, 0, .6)';
     modalRoot.setAttribute('style', "width: 0; height: 0;");
     // modalRoot.setAttribute('style', "width: 0; height: 0;");
+  }
+
+  handlePrevClick(event) {
+    event.preventDefault();
+    const { home } = this.props;
+    const { currentPhotoIndex } = this.state;
+    // debugger;
+    let newIndex;
+    if (currentPhotoIndex <= 1) {
+      newIndex = 40;
+    } else {
+      newIndex = (currentPhotoIndex - 1);
+    }
+    const newPhoto = home.images[newIndex - 1];
+    this.setState((state) => ({
+      currentPhoto: newPhoto,
+      currentPhotoIndex: newIndex,
+    }));
+  }
+
+  handleNextClick(event) {
+    event.preventDefault();
+    const { home } = this.props;
+    const { currentPhotoIndex } = this.state;
+    const newIndex = (currentPhotoIndex + 1) % (home.images.length);
+    const newPhoto = home.images[newIndex - 1];
+    this.setState((state) => ({
+      currentPhoto: newPhoto,
+      currentPhotoIndex: newIndex,
+    }));
   }
 
   render() {
@@ -180,9 +212,9 @@ class PhotoModal extends React.Component {
             <Progress> {`${currentPhotoIndex} of ${images.length}`} </Progress>
           </Footer>
           <PhotoWrapper>
-            <ChangePhoto rotation="180"><SideArrow color="#fff" /></ChangePhoto>
+            <ChangePhoto onClick={this.handlePrevClick} rotation="180"><SideArrow color="#fff" /></ChangePhoto>
             <Photo src={currentPhoto} num={currentPhotoIndex} alt="photo-modal-display" />
-            <ChangePhoto rotation="0"><SideArrow color="#fff" /></ChangePhoto>
+            <ChangePhoto onClick={this.handleNextClick} rotation="0"><SideArrow color="#fff" /></ChangePhoto>
           </PhotoWrapper>
         </Bottom>
       </Wrapper>

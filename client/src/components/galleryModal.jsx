@@ -172,8 +172,8 @@ class GalleryModal extends React.Component {
   handlePhotoModalDisplay(event) {
     event.preventDefault();
     const show = !this.state.showingPhotoModal;
-    const index = event.target.alt
-    if (index) {
+    const index = Number(event.target.alt);
+    if (index !== undefined) {
       this.setState((state) => ({
         showingPhotoModal: show,
         clickedImageIndex: index,
