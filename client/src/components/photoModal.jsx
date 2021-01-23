@@ -139,8 +139,8 @@ class PhotoModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentPhoto: this.props.home.images[0],
-      currentPhotoIndex: 1,
+      currentPhoto: this.props.home.images[this.props.index],
+      currentPhotoIndex: this.props.index + 1,
     };
     this.el = document.createElement('Wrapper');
   }
@@ -190,10 +190,10 @@ class PhotoModal extends React.Component {
   }
 }
 
-const PhotoModalWrapper = ({home, saved, showingPhotoModal, close, handleSaveClick}) => {
+const PhotoModalWrapper = ({index, home, saved, showingPhotoModal, close, handleSaveClick}) => {
   if (showingPhotoModal) {
     return (
-      <PhotoModal home={home} saved={saved} close={close} handleSaveClick={handleSaveClick} />
+      <PhotoModal index={index} home={home} saved={saved} close={close} handleSaveClick={handleSaveClick} />
     );
   }
   return <div />;

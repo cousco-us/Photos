@@ -148,6 +148,7 @@ class GalleryModal extends React.Component {
     this.state = {
       images: makeGalleryImageArray(this.props.home.images),
       showingPhotoModal: false,
+      clickedImageIndex: 0,
     };
     this.el = document.createElement('Wrapper');
     // this.el.setAttribute('style', 'overflow: scroll');
@@ -171,17 +172,26 @@ class GalleryModal extends React.Component {
   handlePhotoModalDisplay(event) {
     event.preventDefault();
     const show = !this.state.showingPhotoModal;
-    this.setState((state) => ({
-      showingPhotoModal: show,
-    }));
+    const index = event.target.alt
+    if (index) {
+      this.setState((state) => ({
+        showingPhotoModal: show,
+        clickedImageIndex: index,
+      }));
+    } else {
+      this.setState((state) => ({
+        showingPhotoModal: show,
+      }));
+    }
   }
 
   render() {
-    const { images } = this.state;
+    const { images, clickedImageIndex } = this.state;
     const { home, saved, close, handleSaveClick, showingPhotoModal } = this.props;
     const { details } = home;
     const { floorplan, price, address } = details;
     const { numBeds, numBaths } = floorplan;
+    let counter = -1;
     return ReactDOM.createPortal(
       (
         <Wrapper>
@@ -199,20 +209,21 @@ class GalleryModal extends React.Component {
           <HomeDetails>
             {`${address.line1} | ${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumSignificantDigits: 7 }).format(price)} | ${numBeds} Beds ${numBaths} Baths`}
           </HomeDetails>
-          <Images onClick={this.handlePhotoModalDisplay}>
+          <Images>
             {
-              images.map((imageArr) => (
+              images.map((imageArr, i) => (
                 <ImageRow>
                   {
-                    imageArr.map((image, i, arr) => (
-                      <Image src={image} num={arr.length} alt="gallery-pic" last={((i === arr.length - 1) ? 'mmhmm' : undefined)} />
-                    ))
+                    imageArr.map((image, j, arr) => {
+                      counter++;
+                      return (<Image src={image} num={arr.length} alt={counter} last={((i === arr.length - 1) ? 'mmhmm' : undefined)} onClick={this.handlePhotoModalDisplay} />);
+                    })
                   }
                 </ImageRow>
               ))
             }
           </Images>
-          <PhotoModalWrapper home={home} saved={this.props.saved} showingPhotoModal={this.state.showingPhotoModal} close={this.handlePhotoModalDisplay} handleSaveClick={this.props.handleSaveClick}/>
+          <PhotoModalWrapper home={home} saved={this.props.saved} showingPhotoModal={this.state.showingPhotoModal} close={this.handlePhotoModalDisplay} handleSaveClick={this.props.handleSaveClick} index={clickedImageIndex}/>
         </Wrapper>
       ),
       this.el,
