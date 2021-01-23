@@ -28,14 +28,11 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:3000/api/photoGallery/60022e8d39ee0a8615c3f457')
+    axios.get('http://localhost:3000/api/photoGallery')
       .then(({ data }) => {
-        const currentHome = data[0];
+        const currentHome = data[Math.floor(Math.random() * data.length)];
         const { saved } = currentHome;
-        this.setState((state) => ({
-          currentHome,
-          saved,
-        }));
+        this.setState(({ currentHome, saved }));
       })
       .catch((err) => {
         console.log('Error getting currentHome on mount: ', err);

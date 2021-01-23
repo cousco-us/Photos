@@ -1,7 +1,7 @@
 const faker = require('faker');
 const { Homes, db } = require('./index.js');
 
-const sampleImages = [];
+
 const possibleTags = ['For Sale', 'For Rent', 'New', 'New Construction', 'Off Market'];
 
 // for now we will not include neighborhood
@@ -12,11 +12,18 @@ function getRandomInt(min, max) {
     max,
   });
 }
-for (let j = 0; j < 40; j += 1) {
-  sampleImages.push(`https://loremflickr.com/900/600/house?random=${j}`);
-}
 const sampleHomes = [];
 for (let i = 0; i < 100; i += 1) {
+  const sampleImages = [];
+  for (let j = 0; j < getRandomInt(15, 40); j += 1) {
+    let addedIndices = {};
+    let newIndex = getRandomInt(0, 332);
+    while (addedIndices[newIndex] !== undefined) {
+      newIndex = getRandomInt(0, 332);
+    }
+    addedIndices[newIndex] = 1;
+    sampleImages.push(`https://fec-house-photos.s3-us-west-1.amazonaws.com/${newIndex}.jpg`);
+  }
   const numBeds = getRandomInt(1, 10);
   const numBaths = getRandomInt(1, 10);
   const sqft = (numBeds + numBaths) * getRandomInt(200, 600);
