@@ -55,10 +55,19 @@ const Symbol = styled.div`
   height: 24px;
   display: inline-block;
   vertical-align: middle;
+  transition: all 0.3s ease;
+
+`;
+
+const SymbolSvg = styled.svg`
+  fill: ${(props) => (props.color)};
+  &:hover {
+    fill: #007882;
+  }
 `;
 
 const CloseBtn = ({ color, handleClose }) => {
-  const closeBtn = <svg className="svg" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M27.816 25.935l-1.881 1.88-21.83-21.83 1.88-1.88 21.83 21.83zm-1.881-21.83l1.88 1.88-21.83 21.83-1.88-1.88 21.83-21.83z" fill={color}></path></svg>;
+  const closeBtn = <SymbolSvg className="svg" color={color} viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M27.816 25.935l-1.881 1.88-21.83-21.83 1.88-1.88 21.83 21.83zm-1.881-21.83l1.88 1.88-21.83 21.83-1.88-1.88 21.83-21.83z"></path></SymbolSvg>;
   return (
     <Symbol onClick={handleClose}>
       {closeBtn}
@@ -114,6 +123,22 @@ const Image = styled.img`
   padding: ${(props) => ((props.last === 'mmhmm') ? '0 0 8px 0' : '0 8px 8px 0')};
 `;
 
+let makeGalleryImageArray = (images) => {
+  let counter = 0;
+  let prevSize;
+  let subArrays = [];
+  while (counter <= images.length) {
+    let subArrSize = (Math.floor(Math.random() * 3 + 1));
+    while (subArrSize === prevSize) {
+      subArrSize = Math.floor(Math.random() * 3 + 1);
+    }
+    prevSize = subArrSize;
+    subArrays.push(images.slice(counter, counter + subArrSize));
+    counter = counter + subArrSize;
+  }
+  return subArrays;
+};
+
 const modalRoot = document.getElementById('gallery-modal-root');
 const appRoot = document.getElementById('app');
 
@@ -121,6 +146,7 @@ class GalleryModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      images: makeGalleryImageArray(this.props.home.images),
       showingPhotoModal: false,
     };
     this.el = document.createElement('Wrapper');
@@ -151,8 +177,9 @@ class GalleryModal extends React.Component {
   }
 
   render() {
+    const { images } = this.state;
     const { home, saved, close, handleSaveClick, showingPhotoModal } = this.props;
-    const { details, images } = home;
+    const { details } = home;
     const { floorplan, price, address } = details;
     const { numBeds, numBaths } = floorplan;
     return ReactDOM.createPortal(
@@ -170,22 +197,20 @@ class GalleryModal extends React.Component {
             </Right>
           </NavBar>
           <HomeDetails>
-            {`${address.line1} | ${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumSignificantDigits: 5 }).format(price)} | ${numBeds} Beds ${numBaths} Baths`}
+            {`${address.line1} | ${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumSignificantDigits: 7 }).format(price)} | ${numBeds} Beds ${numBaths} Baths`}
           </HomeDetails>
           <Images onClick={this.handlePhotoModalDisplay}>
-            <ImageRow>
-              <Image src={images[0]} num="1" alt="gallery-pic" last="mmhmm" />
-            </ImageRow>
-            <ImageRow>
-              {images.slice(1, 4).map((image, i, arr) => (
-                <Image src={image} num="3" alt="gallery-pic" last={((i === arr.length - 1) ? 'mmhmm' : undefined)} />
-              ))}
-            </ImageRow>
-            <ImageRow>
-              {images.slice(5, 7).map((image, i, arr) => (
-                <Image src={image} num="2" alt="gallery-pic" last={((i === arr.length - 1) ? 'mmhmm' : undefined)} />
-              ))}
-            </ImageRow>
+            {
+              images.map((imageArr) => (
+                <ImageRow>
+                  {
+                    imageArr.map((image, i, arr) => (
+                      <Image src={image} num={arr.length} alt="gallery-pic" last={((i === arr.length - 1) ? 'mmhmm' : undefined)} />
+                    ))
+                  }
+                </ImageRow>
+              ))
+            }
           </Images>
           <PhotoModalWrapper home={home} saved={this.props.saved} showingPhotoModal={this.state.showingPhotoModal} close={this.handlePhotoModalDisplay} handleSaveClick={this.props.handleSaveClick}/>
         </Wrapper>
@@ -193,7 +218,7 @@ class GalleryModal extends React.Component {
       this.el,
     );
   }
-};
+}
 
 const GalleryWrapper = ({home, saved, showingGallery, closeGalleryModal, handleSaveClick }) => {
   if (showingGallery) {
