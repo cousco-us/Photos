@@ -13,6 +13,7 @@ const Wrapper = styled.span`
 
 const OptionButton = styled.button`
   flex: 1;
+  outline: none;
   height: 40px;
   min-width: 100px;
   max-width: 108px;

@@ -96,7 +96,7 @@ const PhotoWrapper = styled.div`
 
 const Photo = styled.img`
   height: 100%;
-  max-width: 70%;
+  max-width: 80%;
   object-fit: cover;
   padding: 0 2em;
   //trulia has the buttons stay stationary on the screen

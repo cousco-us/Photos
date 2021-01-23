@@ -36,8 +36,8 @@ const Mountain = () => {
   );
 };
 
-const GallerySize = ({ size }) => (
-  <Wrapper>
+const GallerySize = ({ size, handleGalleryDisplay }) => (
+  <Wrapper onClick={handleGalleryDisplay}>
     <Mountain /> {size}
   </Wrapper>
 );
