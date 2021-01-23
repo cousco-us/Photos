@@ -91,11 +91,12 @@ const PhotoWrapper = styled.div`
   margin-bottom: 10px;
   display: flex;
   align-self: center;
-  justify-content: center;
+  justify-content: space-between;
 `;
 
 const Photo = styled.img`
-  max-width: 80%;
+  height: 100%;
+  max-width: 70%;
   object-fit: cover;
   padding: 0 2em;
   //trulia has the buttons stay stationary on the screen
@@ -104,23 +105,22 @@ const Photo = styled.img`
 const ChangePhoto = styled.div`
   flex: 1;
   flex-basis: auto;
+  align-self: ${(props) => ((props.rotation === '180') ? 'flex-start' : 'flex-end')};
   transform: ${(props) => (`rotate(${props.rotation}deg)`)};
   display: flex;
   border-radius: 50%;
   background-color: #3b4144;
-  margin: auto 10px;
-  /* padding-top: 15px; */
-  padding: 20px;
+  margin: auto 0;
+  padding: .7rem;
   max-height: 24px;
   max-width: 24px;
   justify-content: center;
 `;
 
 const Footer = styled.span`
-  /* flex: 1; */
-  /* width: 100%; */
   display: flex;
   flex-direction: column;
+  width: 75px;
   justify-content: flex-end;
   margin: 30px 0 30px 30px;
 `;
@@ -182,7 +182,6 @@ class PhotoModal extends React.Component {
     event.preventDefault();
     const { home } = this.props;
     const { currentPhotoIndex } = this.state;
-    debugger;
     let newIndex = (currentPhotoIndex + 1) % (home.images.length + 1);
     if (newIndex === 0) {
       newIndex = 1;
@@ -207,7 +206,7 @@ class PhotoModal extends React.Component {
             {`${address.line1} | ${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumSignificantDigits: 5 }).format(price)} | ${numBeds} Beds ${numBaths} Baths`}
           </HomeDetails>
           <Right>
-            <HomeOptions saved={saved} color="#3b4144" handleSaveClick={handleSaveClick}/>
+            <HomeOptions saved={saved} color="#3b4144" handleSaveClick={handleSaveClick} />
             <CloseBtn color="#fff" handleClose={this.props.close} />
           </Right>
         </NavBar>
