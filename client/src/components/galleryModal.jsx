@@ -5,11 +5,11 @@ import HomeOptions from './galleryPreviewComponents/homeOptions.jsx';
 import PhotoModalWrapper from './photoModal.jsx';
 
 // const modalRoot = document.getElementById('modal-root');
-const Modal = styled.div`
-  z-index: 100;
-  position: fixed;
-  inset: 0;
-`;
+// const Modal = styled.div`
+//   z-index: 100;
+//   position: fixed;
+//   inset: 0;
+// `;
 
 const Wrapper = styled.div`
   margin: 3%;
@@ -109,18 +109,18 @@ const Images = styled.span`
   border-radius: 9px;
 `;
 const ImageRow = styled.span`
-  max-width: 100%;
+  width: 100%;
   display: flex;
   padding: 0;
   justify-content: space-between;
 `;
 
 const Image = styled.img`
-  max-height: 550px;
+  height: 625px;
   max-width: ${(props) => (`${(100 / Number(props.num))}%`)};
   flex: 1;
   object-fit: cover;
-  padding: ${(props) => ((props.last === 'mmhmm') ? '0 0 8px 0' : '0 8px 8px 0')};
+  padding: ${(props) => ((props.num === 1) ? '0 0 8px 0' : '0 8px 8px 0')};
 `;
 
 let makeGalleryImageArray = (images) => {
@@ -215,8 +215,8 @@ class GalleryModal extends React.Component {
                 <ImageRow>
                   {
                     imageArr.map((image, j, arr) => {
-                      counter++;
-                      return (<Image src={image} num={arr.length} alt={counter} last={((i === arr.length - 1) ? 'mmhmm' : undefined)} onClick={this.handlePhotoModalDisplay} />);
+                      counter += 1;
+                      return (<Image src={image} num={arr.length} alt={counter} onClick={this.handlePhotoModalDisplay} />);
                     })
                   }
                 </ImageRow>

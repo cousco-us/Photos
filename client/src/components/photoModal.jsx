@@ -167,7 +167,7 @@ class PhotoModal extends React.Component {
     // debugger;
     let newIndex;
     if (currentPhotoIndex <= 1) {
-      newIndex = 40;
+      newIndex = home.images.length;
     } else {
       newIndex = (currentPhotoIndex - 1);
     }
@@ -182,7 +182,11 @@ class PhotoModal extends React.Component {
     event.preventDefault();
     const { home } = this.props;
     const { currentPhotoIndex } = this.state;
-    const newIndex = (currentPhotoIndex + 1) % (home.images.length);
+    debugger;
+    let newIndex = (currentPhotoIndex + 1) % (home.images.length + 1);
+    if (newIndex === 0) {
+      newIndex = 1;
+    }
     const newPhoto = home.images[newIndex - 1];
     this.setState((state) => ({
       currentPhoto: newPhoto,
