@@ -65,14 +65,6 @@ class GalleryPreview extends React.Component {
     }));
   }
 
-  // handlePhotoModalDisplay(event) {
-  //   event.preventDefault();
-  //   const show = !this.state.showingPhotoModal;
-  //   this.setState((state) => ({
-  //     showingPhotoModal: show,
-  //   }));
-  // }
-
   // choose sampleImages more deliberately (might be a stretch goal)
   render() {
     const { currentHome, showingGallery } = this.state;

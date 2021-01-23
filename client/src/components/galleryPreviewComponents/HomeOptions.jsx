@@ -27,6 +27,10 @@ const OptionButton = styled.button`
   font-size: 16px;
   font-family: Roboto, "Segoe UI Bold", Arial, sans-serif;
   color: #3b4144;
+  transition: all 0.3s ease;
+  &:hover {
+    background-color: #e8e9ea;
+  }
 `;
 
 const changeBackground = (event, color) => {

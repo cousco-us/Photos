@@ -40,8 +40,17 @@ const Symbol = styled.div`
   vertical-align: middle;
 `;
 
+const SymbolSvg = styled.svg`
+  fill: ${(props) => (props.color)};
+  transition: all 0.2s ease;
+  &:hover {
+    fill: #007882;
+  }
+`;
+
 const CloseBtn = ({ color, handleClose }) => {
-  const closeBtn = <svg className="svg" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M27.816 25.935l-1.881 1.88-21.83-21.83 1.88-1.88 21.83 21.83zm-1.881-21.83l1.88 1.88-21.83 21.83-1.88-1.88 21.83-21.83z" fill={color}></path></svg>;
+  console.log(color);
+  const closeBtn = <SymbolSvg className="svg" color={color} viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M27.816 25.935l-1.881 1.88-21.83-21.83 1.88-1.88 21.83 21.83zm-1.881-21.83l1.88 1.88-21.83 21.83-1.88-1.88 21.83-21.83z"></path></SymbolSvg>;
   return (
     <Symbol onClick={handleClose}>
       {closeBtn}
@@ -130,9 +139,11 @@ class PhotoModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentPhoto: this.props.home.images[0],
-      currentPhotoIndex: 1,
+      currentPhoto: this.props.home.images[this.props.index],
+      currentPhotoIndex: this.props.index + 1,
     };
+    this.handleNextClick = this.handleNextClick.bind(this);
+    this.handlePrevClick = this.handlePrevClick.bind(this);
     this.el = document.createElement('Wrapper');
   }
 
@@ -147,6 +158,36 @@ class PhotoModal extends React.Component {
     modalRoot.style['background-color'] = 'rgba(0, 0, 0, .6)';
     modalRoot.setAttribute('style', "width: 0; height: 0;");
     // modalRoot.setAttribute('style', "width: 0; height: 0;");
+  }
+
+  handlePrevClick(event) {
+    event.preventDefault();
+    const { home } = this.props;
+    const { currentPhotoIndex } = this.state;
+    // debugger;
+    let newIndex;
+    if (currentPhotoIndex <= 1) {
+      newIndex = 40;
+    } else {
+      newIndex = (currentPhotoIndex - 1);
+    }
+    const newPhoto = home.images[newIndex - 1];
+    this.setState((state) => ({
+      currentPhoto: newPhoto,
+      currentPhotoIndex: newIndex,
+    }));
+  }
+
+  handleNextClick(event) {
+    event.preventDefault();
+    const { home } = this.props;
+    const { currentPhotoIndex } = this.state;
+    const newIndex = (currentPhotoIndex + 1) % (home.images.length);
+    const newPhoto = home.images[newIndex - 1];
+    this.setState((state) => ({
+      currentPhoto: newPhoto,
+      currentPhotoIndex: newIndex,
+    }));
   }
 
   render() {
@@ -171,9 +212,9 @@ class PhotoModal extends React.Component {
             <Progress> {`${currentPhotoIndex} of ${images.length}`} </Progress>
           </Footer>
           <PhotoWrapper>
-            <ChangePhoto rotation="180"><SideArrow color="#fff" /></ChangePhoto>
+            <ChangePhoto onClick={this.handlePrevClick} rotation="180"><SideArrow color="#fff" /></ChangePhoto>
             <Photo src={currentPhoto} num={currentPhotoIndex} alt="photo-modal-display" />
-            <ChangePhoto rotation="0"><SideArrow color="#fff" /></ChangePhoto>
+            <ChangePhoto onClick={this.handleNextClick} rotation="0"><SideArrow color="#fff" /></ChangePhoto>
           </PhotoWrapper>
         </Bottom>
       </Wrapper>
@@ -181,10 +222,10 @@ class PhotoModal extends React.Component {
   }
 }
 
-const PhotoModalWrapper = ({home, saved, showingPhotoModal, close, handleSaveClick}) => {
+const PhotoModalWrapper = ({index, home, saved, showingPhotoModal, close, handleSaveClick}) => {
   if (showingPhotoModal) {
     return (
-      <PhotoModal home={home} saved={saved} close={close} handleSaveClick={handleSaveClick} />
+      <PhotoModal index={index} home={home} saved={saved} close={close} handleSaveClick={handleSaveClick} />
     );
   }
   return <div />;

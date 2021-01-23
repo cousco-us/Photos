@@ -13,6 +13,10 @@ const Wrapper = styled.span`
   border-radius: 4px;
   font-family: Roboto, "Segoe UI Bold", Arial, sans-serif;
   padding: 3px 8px;
+  transition: all 0.3s ease;
+  &:hover {
+    background-color: #869089;
+  }
 `;
 
 //refactor to have symbol defined externally
