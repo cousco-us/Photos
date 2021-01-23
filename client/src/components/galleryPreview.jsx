@@ -6,6 +6,7 @@ import HomeDetails from './galleryPreviewComponents/homeDetails.jsx';
 import HomeOptions from './galleryPreviewComponents/homeOptions.jsx';
 import GallerySize from './galleryPreviewComponents/gallerySize.jsx';
 import GalleryWrapper from './galleryModal.jsx';
+import PhotoModalWrapper from './photoModal.jsx';
 
 const Wrapper = styled.div`
   max-height: 460px;
@@ -48,10 +49,12 @@ class GalleryPreview extends React.Component {
     super(props);
     this.state = {
       currentHome: this.props.currentHome,
-      showingGallery: this.props.showingGallery,
+      showingGallery: false,
+      // showingPhotoModal: true,
     };
     this.setState = this.setState.bind(this);
     this.handleGalleryDisplay = this.handleGalleryDisplay.bind(this);
+    // this.handlePhotoModalDisplay = this.handlePhotoModalDisplay.bind(this);
   }
 
   handleGalleryDisplay(event) {
@@ -61,6 +64,14 @@ class GalleryPreview extends React.Component {
       showingGallery: show,
     }));
   }
+
+  // handlePhotoModalDisplay(event) {
+  //   event.preventDefault();
+  //   const show = !this.state.showingPhotoModal;
+  //   this.setState((state) => ({
+  //     showingPhotoModal: show,
+  //   }));
+  // }
 
   // choose sampleImages more deliberately (might be a stretch goal)
   render() {
@@ -79,7 +90,7 @@ class GalleryPreview extends React.Component {
         <Footer>
           <GallerySize size={images.length} handleGalleryDisplay={this.handleGalleryDisplay} />
         </Footer>
-        <GalleryWrapper home={currentHome} saved={this.props.saved} showingGallery={showingGallery} close={this.handleGalleryDisplay} handleSaveClick={this.props.handleSaveClick}/>
+        <GalleryWrapper home={currentHome} saved={this.props.saved} showingGallery={showingGallery} closeGalleryModal={this.handleGalleryDisplay} handleSaveClick={this.props.handleSaveClick}/>
       </Wrapper>
     );
   }

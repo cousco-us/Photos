@@ -38,7 +38,7 @@ const sampleHome = {
       sqft: 7630,
     },
     _id: '60022e8d39ee0a8615c3f45a',
-    price: 2067730,
+    price: new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumSignificantDigits: 5 }).format(2067730),
   },
   saved: true,
   _id: '60022e8d39ee0a8615c3f457',

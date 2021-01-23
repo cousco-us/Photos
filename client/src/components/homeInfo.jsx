@@ -121,7 +121,7 @@ const HomeInfo = ({ home }) => {
         <div className="price right">
           <LineOne>
             {/* add commas to price if possible */}
-            ${price}
+            {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumSignificantDigits: 5 }).format(price)}
           </LineOne>
           {/* <p className="price-info">
             Trulia Estimate (i) */}
