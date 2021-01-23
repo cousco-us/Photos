@@ -4,17 +4,9 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
-  -webkit-transition: all 0.5s ease; /* Safari and Chrome */
-  -moz-transition: all 0.5s ease; /* Firefox */
-  -ms-transition: all 0.5s ease; /* IE 9 */
-  -o-transition: all 0.5s ease; /* Opera */
   transition: all 0.5s ease;
   &:hover {
-    -webkit-transform:scale(1.05); /* Safari and Chrome */
-    -moz-transform:scale(1.05); /* Firefox */
-    -ms-transform:scale(1.05); /* IE 9 */
-    -o-transform:scale(1.05); /* Opera */
-    transform:scale(1.05);
+    transform: ${(props) => (props.zoomed ? 'scale(1.05)' : 'none')};
   };
 `;
 
@@ -35,8 +27,8 @@ const TopImage = styled.div`
 `;
 const BottomImage = styled.div`
 `;
-const SampleImages = ({ images, handleGalleryDisplay }) => (
-  <Wrapper onClick={handleGalleryDisplay}>
+const SampleImages = ({ images, handleGalleryDisplay, zoomed }) => (
+  <Wrapper onClick={handleGalleryDisplay} zoomed={zoomed}>
     <LeftImage>
       <img className="sample-image-big" src={images[0]} alt="main images of preview" height="460" width="700" />
     </LeftImage>

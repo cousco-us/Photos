@@ -18,13 +18,22 @@ const Tag = styled.div`
   font-family: Roboto, "Segoe UI Bold", Arial, sans-serif;
 `;
 
-const HomeDetails = ({ tags }) => (
+const HomeDetails = ({ tags }) => {
   // should loop through all tags rather than just display the first
-  <Wrapper>
-    <Tag>
-      {tags[0]}
-    </Tag>
-  </Wrapper>
-);
+  if (!tags[0]) {
+    return <div />;
+  }
+  return (
+    <Wrapper>
+      {
+        tags.map((tag) => (
+          <Tag>
+            {tag}
+          </Tag>
+        ))
+      }
+    </Wrapper>
+  );
+};
 
 export default HomeDetails;

@@ -11,6 +11,7 @@ const AppWrapper = styled.div`
   max-width: 952px;
   margin: auto;
   flex-direction: column;
+  overflow: hidden;
 `;
 
 class App extends React.Component {

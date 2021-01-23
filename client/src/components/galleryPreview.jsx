@@ -50,6 +50,7 @@ class GalleryPreview extends React.Component {
     this.state = {
       currentHome: this.props.currentHome,
       showingGallery: false,
+      imagesZoomed: false,
       // showingPhotoModal: true,
     };
     this.setState = this.setState.bind(this);
@@ -60,20 +61,28 @@ class GalleryPreview extends React.Component {
   handleGalleryDisplay(event) {
     event.preventDefault();
     const show = !this.state.showingGallery;
-    this.setState((state) => ({
+    this.setState({
       showingGallery: show,
-    }));
+    });
+  }
+
+  handleHoverZoom(event) {
+    event.preventDefault();
+    const zoom = !this.state.imagesZoomed;
+    this.setState({
+      imagesZoomed: zoom,
+    });
   }
 
   // choose sampleImages more deliberately (might be a stretch goal)
   render() {
-    const { currentHome, showingGallery } = this.state;
+    const { currentHome, showingGallery, imagesZoomed } = this.state;
     const { images, tags } = currentHome;
     const sampleImages = images.slice(0, 3);
     return (
-      <Wrapper>
+      <Wrapper onMouseEnter={this.handleHoverZoom.bind(this)} onMouseLeave={this.handleHoverZoom.bind(this)}>
         <Background>
-          <SampleImages images={sampleImages} handleGalleryDisplay={this.handleGalleryDisplay} />
+          <SampleImages images={sampleImages} handleGalleryDisplay={this.handleGalleryDisplay} zoomed={imagesZoomed}/>
         </Background>
         <Header>
           <HomeDetails tags={tags} />
