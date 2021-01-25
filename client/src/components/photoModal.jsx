@@ -9,6 +9,8 @@ const Wrapper = styled.div`
   height: 100%;
   max-width: 96%;
   flex-direction: column;
+  justify-content: flex-start;
+  object-fit: contain;
   margin: 1% auto;
   font-family: Roboto, "Segoe UI Bold", Arial, sans-serif;
 `;
@@ -79,14 +81,17 @@ const Right = styled.span`
 const Bottom = styled.span`
   flex: 1;
   display: flex;
+  height: 90%;
+  object-fit: contain;
   justify-content: flex-start;
   padding-right: .7em;
 `;
 
 const PhotoWrapper = styled.div`
   flex: 1;
+  object-fit: contain;
   padding-bottom: 15px;
-  height: 95%;
+  max-height: 90%;
   max-width: 90%;
   margin-bottom: 10px;
   display: flex;
@@ -95,9 +100,8 @@ const PhotoWrapper = styled.div`
 `;
 
 const Photo = styled.img`
-  height: 100%;
   max-width: 80%;
-  object-fit: cover;
+  object-fit: contain;
   padding: 0 2em;
   //trulia has the buttons stay stationary on the screen
 `;
