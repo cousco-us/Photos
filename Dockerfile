@@ -1,15 +1,18 @@
-FROM node:8.10-alpine
+FROM node:15.6.0-alpine3.10
+FROM mongo
 
-RUN mkdir -p /src/Photos
+RUN mkdir -p /src/app
 
-WORKDIR /src/Photos
+WORKDIR /src/app
 
-COPY . /src/Photos
+COPY . /src/app
 
-RUN yarn install
+RUN npm install
+RUN npm run server-dev
+RUN npm run db:seed
 
-RUN yarn global add nodemon
+# RUN npm global add nodemon
 
-EXPOSE 3000
+EXPOSE 5000
 
-CMD [ "npm", "run", "startdev" ]
+CMD [ "npm", "run", "react-dev" ]
