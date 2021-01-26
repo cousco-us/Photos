@@ -112,12 +112,11 @@ const ImageRow = styled.span`
   width: 100%;
   display: flex;
   padding: 0;
-  object-fit: cover;
+  max-height: 550px;
   justify-content: space-between;
 `;
 
 const Image = styled.img`
-  height: 625px;
   max-width: ${(props) => (`${(100 / Number(props.num))}%`)};
   flex: 1;
   object-fit: cover;
