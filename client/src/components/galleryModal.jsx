@@ -4,13 +4,6 @@ import styled from 'styled-components';
 import HomeOptions from './galleryPreviewComponents/homeOptions.jsx';
 import PhotoModalWrapper from './photoModal.jsx';
 
-// const modalRoot = document.getElementById('modal-root');
-// const Modal = styled.div`
-//   z-index: 100;
-//   position: fixed;
-//   inset: 0;
-// `;
-
 const Wrapper = styled.div`
   margin: 3%;
   display: flex;
@@ -123,22 +116,6 @@ const Image = styled.img`
   padding: ${(props) => ((props.num === 1) ? '0 0 8px 0' : '0 8px 8px 0')};
 `;
 
-let makeGalleryImageArray = (images) => {
-  let counter = 0;
-  let prevSize;
-  let subArrays = [];
-  while (counter <= images.length) {
-    let subArrSize = (Math.floor(Math.random() * 3 + 1));
-    while (subArrSize === prevSize) {
-      subArrSize = Math.floor(Math.random() * 3 + 1);
-    }
-    prevSize = subArrSize;
-    subArrays.push(images.slice(counter, counter + subArrSize));
-    counter = counter + subArrSize;
-  }
-  return subArrays;
-};
-
 const modalRoot = document.getElementById('gallery-modal-root');
 const appRoot = document.getElementById('app');
 
@@ -146,12 +123,10 @@ class GalleryModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      images: makeGalleryImageArray(this.props.home.images),
       showingPhotoModal: false,
       clickedImageIndex: 0,
     };
     this.el = document.createElement('Wrapper');
-    // this.el.setAttribute('style', 'overflow: scroll');
     this.handlePhotoModalDisplay = this.handlePhotoModalDisplay.bind(this);
   }
 
@@ -186,8 +161,8 @@ class GalleryModal extends React.Component {
   }
 
   render() {
-    const { images, clickedImageIndex } = this.state;
-    const { home, saved, close, handleSaveClick, showingPhotoModal } = this.props;
+    const { clickedImageIndex } = this.state;
+    const { home, images, saved, close, handleSaveClick, showingPhotoModal } = this.props;
     const { details } = home;
     const { floorplan, price, address } = details;
     const { numBeds, numBaths } = floorplan;
@@ -231,10 +206,10 @@ class GalleryModal extends React.Component {
   }
 }
 
-const GalleryWrapper = ({home, saved, showingGallery, closeGalleryModal, handleSaveClick }) => {
+const GalleryWrapper = ({home, images, saved, showingGallery, closeGalleryModal, handleSaveClick }) => {
   if (showingGallery) {
     return (
-      <GalleryModal home={home} saved={saved} close={closeGalleryModal} handleSaveClick={handleSaveClick} />
+      <GalleryModal home={home} saved={saved} close={closeGalleryModal} handleSaveClick={handleSaveClick} images={images} />
     );
   }
   return <div />;

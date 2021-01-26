@@ -48,20 +48,6 @@ class App extends React.Component {
     }));
   }
 
-  // closeGallery(event) {
-  //   event.preventDefault();
-  //   this.setState((state) => ({
-  //     showingGallery: false,
-  //   }));
-  // }
-
-  // closePhotoModal(event) {
-  //   event.preventDefault();
-  //   this.setState((state) => ({
-  //     showingPhotoModal: false,
-  //   }));
-  // }
-
   render() {
     const { currentHome, saved, showingGallery, showingPhotoModal } = this.state;
     if (currentHome.images) {

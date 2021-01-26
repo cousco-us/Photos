@@ -44,11 +44,29 @@ const Footer = styled.span`
   left: 92%;
 `;
 
+const makeGalleryImageArray = (images) => {
+  let counter = 0;
+  let prevSize;
+  const subArrays = [];
+  while (counter <= images.length) {
+    let subArrSize = (Math.floor(Math.random() * 3 + 1));
+    while (subArrSize === prevSize) {
+      subArrSize = Math.floor(Math.random() * 3 + 1);
+    }
+    prevSize = subArrSize;
+    subArrays.push(images.slice(counter, counter + subArrSize));
+    counter += subArrSize;
+  }
+  return subArrays;
+};
+
 class GalleryPreview extends React.Component {
   constructor(props) {
     super(props);
+    const { currentHome } = this.props;
     this.state = {
-      currentHome: this.props.currentHome,
+      currentHome: currentHome,
+      images: makeGalleryImageArray(currentHome.images),
       showingGallery: false,
       imagesZoomed: false,
       // showingPhotoModal: true,
@@ -57,6 +75,12 @@ class GalleryPreview extends React.Component {
     this.handleGalleryDisplay = this.handleGalleryDisplay.bind(this);
     // this.handlePhotoModalDisplay = this.handlePhotoModalDisplay.bind(this);
   }
+
+  // componentDidMount() {
+  //   let { images } = this.state;
+  //   images = makeGalleryImageArray(images);
+  //   this.setState({ images });
+  // }
 
   handleGalleryDisplay(event) {
     event.preventDefault();
@@ -76,9 +100,9 @@ class GalleryPreview extends React.Component {
 
   // choose sampleImages more deliberately (might be a stretch goal)
   render() {
-    const { currentHome, showingGallery, imagesZoomed } = this.state;
-    const { images, tags } = currentHome;
-    const sampleImages = images.slice(0, 3);
+    const { currentHome, showingGallery, imagesZoomed, images } = this.state;
+    const { tags } = currentHome;
+    const sampleImages = images.flat().slice(0, 3);
     return (
       <Wrapper onMouseEnter={this.handleHoverZoom.bind(this)} onMouseLeave={this.handleHoverZoom.bind(this)}>
         <Background>
@@ -89,9 +113,9 @@ class GalleryPreview extends React.Component {
           <HomeOptions saved={this.props.saved} btnColor="#007882" handleSaveClick={this.props.handleSaveClick} />
         </Header>
         <Footer>
-          <GallerySize size={images.length} handleGalleryDisplay={this.handleGalleryDisplay} />
+          <GallerySize size={images.flat().length} handleGalleryDisplay={this.handleGalleryDisplay} />
         </Footer>
-        <GalleryWrapper home={currentHome} saved={this.props.saved} showingGallery={showingGallery} closeGalleryModal={this.handleGalleryDisplay} handleSaveClick={this.props.handleSaveClick}/>
+        <GalleryWrapper home={currentHome} images={images} saved={this.props.saved} showingGallery={showingGallery} closeGalleryModal={this.handleGalleryDisplay} handleSaveClick={this.props.handleSaveClick}/>
       </Wrapper>
     );
   }
