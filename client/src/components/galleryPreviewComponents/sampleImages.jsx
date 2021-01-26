@@ -25,20 +25,20 @@ const RightImages = styled.div`
 const TopImage = styled.div`
   padding-bottom: 6px;
 `;
-const BottomImage = styled.div`
+
+const Image = styled.img`
+  object-fit: cover;
 `;
 const SampleImages = ({ images, handleGalleryDisplay, zoomed }) => (
   <Wrapper onClick={handleGalleryDisplay} zoomed={zoomed}>
     <LeftImage>
-      <img className="sample-image-big" src={images[0]} alt="main images of preview" height="460" width="700" />
+      <Image className="sample-image-big" src={images[0]} alt="main images of preview" height="460" width="700" />
     </LeftImage>
     <RightImages>
       <TopImage>
-        <img className="sample-image-top" src={images[1]} alt="main images of preview" height="225" width="251" />
+        <Image className="sample-image-top" src={images[1]} alt="main images of preview" height="225" width="251" />
       </TopImage>
-      <BottomImage>
-        <img className="sample-image-bottom" src={images[2]} alt="main images of preview" height="225" width="251" />
-      </BottomImage>
+      <Image className="sample-image-bottom" src={images[2]} alt="main images of preview" height="225" width="251" />
     </RightImages>
   </Wrapper>
 );

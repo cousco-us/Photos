@@ -50,6 +50,7 @@ const insertSampleHomes = () => {
   Homes.create(sampleHomes)
     .then(() => {
       console.log('added stuff to db');
+      db.close();
     });
 };
 
