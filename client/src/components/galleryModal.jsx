@@ -112,6 +112,7 @@ const ImageRow = styled.span`
   width: 100%;
   display: flex;
   padding: 0;
+  object-fit: cover;
   justify-content: space-between;
 `;
 
