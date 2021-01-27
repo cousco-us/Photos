@@ -27,7 +27,7 @@ const HomeDetails = ({ tags }) => {
     <Wrapper>
       {
         tags.map((tag) => (
-          <Tag>
+          <Tag key={tag}>
             {tag}
           </Tag>
         ))

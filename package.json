@@ -17,7 +17,7 @@
     "start": "node server/index.js"
   },
   "resolutions": {
-    "styled-components": "^5"
+    "styled-components": "5.2.1"
   },
   "dependencies": {
     "chai": "^4.2.0",
@@ -29,7 +29,7 @@
     "react": "^16.13.1",
     "react-backdrop-filter": "^2.1.0",
     "react-dom": "^16.13.1",
-    "styled-components": "@5.2.1"
+    "styled-components": "5.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
@@ -69,4 +69,3 @@
   },
   "homepage": "https://github.com/cousco-us/Photos#readme"
 }
-

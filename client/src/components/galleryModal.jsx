@@ -105,7 +105,7 @@ const ImageRow = styled.span`
   width: 100%;
   display: flex;
   padding: 0;
-  max-height: 550px;
+  /* max-height: 100%; */
   justify-content: space-between;
 `;
 
@@ -113,6 +113,7 @@ const Image = styled.img`
   max-width: ${(props) => (`${(100 / Number(props.num))}%`)};
   flex: 1;
   object-fit: cover;
+  justify-content: center;
   padding: ${(props) => ((props.num === 1) ? '0 0 8px 0' : '0 8px 8px 0')};
 `;
 
@@ -187,11 +188,11 @@ class GalleryModal extends React.Component {
           <Images>
             {
               images.map((imageArr, i) => (
-                <ImageRow>
+                <ImageRow key={imageArr[0] + imageArr.length}>
                   {
                     imageArr.map((image, j, arr) => {
                       counter += 1;
-                      return (<Image src={image} num={arr.length} alt={counter} onClick={this.handlePhotoModalDisplay} />);
+                      return (<Image key={image} src={image} num={arr.length} alt={counter} onClick={this.handlePhotoModalDisplay} />);
                     })
                   }
                 </ImageRow>
