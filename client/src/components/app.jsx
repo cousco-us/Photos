@@ -29,7 +29,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:3002/api/photoGallery')
+    axios.get('/api/photoGallery')
       .then(({ data }) => {
         const currentHome = data[Math.floor(Math.random() * data.length)];
         const { saved } = currentHome;

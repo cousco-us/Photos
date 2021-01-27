@@ -8,9 +8,7 @@ const port = 3002;
 
 app.use(cors());
 app.use(express.json());
-// serving static files not working
 app.use('/', express.static('public'));
-app.use('/bundle', express.static('public/dist/bundle.js'));
 
 app.get('/api/photoGallery/:homeId', controller.getHomeInfo);
 app.patch('/api/photoGallery/:homeId', controller.toggleHomeSaved);
