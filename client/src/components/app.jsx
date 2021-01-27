@@ -8,9 +8,9 @@ import HomeInfo from './homeInfo.jsx';
 
 const AppWrapper = styled.div`
   display: block;
-  max-width: 952px;
+  max-width: 960px;
   margin: auto;
-  flex-direction: column;
+  /* flex-direction: column; */
   overflow: hidden;
 `;
 

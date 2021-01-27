@@ -4,8 +4,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
   width: 60%;
-  padding: 10px;
-  padding-left: 20px;
+  padding: 10px 16px;
   display: flex;
   justify-content: space-between;
   font-family: Roboto, "Segoe UI Bold", Arial, sans-serif;
