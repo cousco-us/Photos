@@ -117,7 +117,7 @@ const Image = styled.img`
 `;
 
 const modalRoot = document.getElementById('gallery-modal-root');
-const appRoot = document.getElementById('app');
+const appRoot = document.getElementById('gallery');
 
 class GalleryModal extends React.Component {
   constructor(props) {

@@ -51,7 +51,6 @@ const SymbolSvg = styled.svg`
 `;
 
 const CloseBtn = ({ color, handleClose }) => {
-  console.log(color);
   const closeBtn = <SymbolSvg className="svg" color={color} viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M27.816 25.935l-1.881 1.88-21.83-21.83 1.88-1.88 21.83 21.83zm-1.881-21.83l1.88 1.88-21.83 21.83-1.88-1.88 21.83-21.83z"></path></SymbolSvg>;
   return (
     <Symbol onClick={handleClose}>
@@ -137,7 +136,7 @@ const Progress = styled.div`
 `;
 
 const modalRoot = document.getElementById('photo-modal-root');
-const appRoot = document.getElementById('app');
+const appRoot = document.getElementById('gallery');
 
 class PhotoModal extends React.Component {
   constructor(props) {
