@@ -10,10 +10,10 @@ app.use(cors());
 app.use(express.json());
 app.use('/', express.static('public'));
 
-app.get('/api/photoGallery/:homeId', controller.getHomeInfo);
-app.patch('/api/photoGallery/:homeId', controller.toggleHomeSaved);
+app.get('/api/photoGallery/:homeId', controller.getHomeInfo); //dev
+app.patch('/api/photoGallery/:homeId', controller.toggleHomeSaved); //dev
 app.get('/api/photoGallery', controller.getAllHomes);
-app.delete('/api/photoGallery', controller.deleteAll);
+app.delete('/api/photoGallery', controller.deleteAll); //dev
 
 app.listen(port, () => {
   console.log('listening at port ', port);
