@@ -3,7 +3,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-  width: 60%;
   padding: 10px 16px;
   display: flex;
   justify-content: space-between;
@@ -12,23 +11,30 @@ const Wrapper = styled.div`
 `;
 
 const LeftBox = styled.div`
-  flex: 2;
+  flex: 3;
   display: flex;
   flex-direction: column;
   `;
 
 LeftBox.displayName = 'LeftBox';
 const RightBox = styled.div`
-  flex: 1;
+  flex: 2;
   display: flex;
-  justify-content: flex-end;
+  /* justify-content: flex-end; */
 `;
 RightBox.displayName = 'RightBox';
 const Address = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
+`;
+const Map = styled.img`
+  flex: 2;
+  max-width: 120px;
+  border: 2px solid rgb(197, 197, 197);
+  border-radius: 7%;
+  /* align-self: end; */
 `;
 Address.displayName = 'Address';
 const Floorplan = styled.span`
@@ -38,8 +44,7 @@ const Floorplan = styled.span`
   letter-spacing: -0.1px;
   line-height: 24px;
   padding-top: 20px;
-  justify-content: space-between;
-  padding-right: 25%;
+  justify-content: flex-start;
 `;
 Floorplan.displayName = 'Floorplan';
 const LineOne = styled.span`
@@ -57,6 +62,7 @@ const LineTwo = styled.span`
   color: #3b4144;
   display: inline;
   letter-spacing: -0.1px;
+  font-size: 16px;
   line-height: 24px;
 `;
 LineTwo.displayName = 'LineTwo';
@@ -68,6 +74,10 @@ const Symbol = styled.div`
   vertical-align: middle;
 `;
 
+const FloorplanItem = styled.div`
+  padding-right: 2em;
+  font-size: 16px;
+`;
 const Bed = () => {
   const bed = <svg className="svg" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M9.196 14.603h15.523v.027h1.995v10.64h-3.99v-4.017H9.196v4.017h-3.99V6.65h3.99v7.953zm2.109-1.968v-2.66h4.655v2.66h-4.655z" fill="#869099"></path></svg>;
   return (
@@ -110,9 +120,15 @@ const HomeInfo = ({ home }) => {
           </LineTwo>
         </Address>
         <Floorplan>
-          <Bed /> {numBeds} Beds
-          <Bath /> {numBaths} Baths
-          <Triangle /> {sqft} sqft
+          <FloorplanItem>
+            <Bed /> {numBeds} Beds
+          </FloorplanItem>
+          <FloorplanItem>
+            <Bath /> {numBaths} Baths
+          </FloorplanItem>
+          <FloorplanItem>
+            <Triangle /> {sqft} sqft
+          </FloorplanItem>
         </Floorplan>
       </LeftBox>
       <RightBox>
@@ -122,6 +138,7 @@ const HomeInfo = ({ home }) => {
           </LineOne>
         </div>
       </RightBox>
+      <Map className="home-map" src="https://fec-house-photos.s3-us-west-1.amazonaws.com/Screen+Shot+2021-01-27+at+5.09.23+PM.png" alt="minimap" width="120" height="120" />
     </Wrapper>
   );
 };
