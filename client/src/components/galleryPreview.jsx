@@ -38,7 +38,7 @@ const Footer = styled.span`
   position: relative;
   top: -78px;
   display: flex;
-  padding: 0 17px;
+  padding: 0 10px;
   max-width: 60px;
   height: 28px;
   left: 92%;
@@ -69,18 +69,10 @@ class GalleryPreview extends React.Component {
       images: makeGalleryImageArray(currentHome.images),
       showingGallery: false,
       imagesZoomed: false,
-      // showingPhotoModal: true,
     };
     this.setState = this.setState.bind(this);
     this.handleGalleryDisplay = this.handleGalleryDisplay.bind(this);
-    // this.handlePhotoModalDisplay = this.handlePhotoModalDisplay.bind(this);
   }
-
-  // componentDidMount() {
-  //   let { images } = this.state;
-  //   images = makeGalleryImageArray(images);
-  //   this.setState({ images });
-  // }
 
   handleGalleryDisplay(event) {
     event.preventDefault();

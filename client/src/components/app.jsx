@@ -10,7 +10,6 @@ const AppWrapper = styled.div`
   display: block;
   max-width: 960px;
   margin: auto;
-  /* flex-direction: column; */
   overflow: hidden;
 `;
 
@@ -20,8 +19,6 @@ class App extends React.Component {
     this.state = {
       currentHome: {},
       saved: false,
-      // showingGallery: false,
-      // showingPhotoModal: false,
     };
     const { currentHome, saved } = this.state;
     this.setState = this.setState.bind(this);

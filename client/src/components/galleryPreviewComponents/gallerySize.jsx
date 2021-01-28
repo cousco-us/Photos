@@ -9,10 +9,11 @@ const Wrapper = styled.span`
   font-weight: 700;
   line-height: 21px;
   text-align: center;
+  min-width: 50px;
   background-color: rgba(59, 65, 68, 0.8);
   border-radius: 4px;
   font-family: Roboto, "Segoe UI Bold", Arial, sans-serif;
-  padding: 3px 8px;
+  padding: 3px;
   transition: all 0.3s ease;
   &:hover {
     background-color: #869089;
