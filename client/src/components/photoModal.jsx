@@ -38,6 +38,7 @@ const HomeDetails = styled.span`
 const Symbol = styled.div`
   width: 24px;
   height: 24px;
+  min-width: 24px;
   display: inline-block;
   vertical-align: middle;
 `;
@@ -99,7 +100,7 @@ const PhotoWrapper = styled.div`
 `;
 
 const Photo = styled.img`
-  max-width: 80%;
+  min-width: 70%;
   object-fit: contain;
   padding: 0 2em;
   //trulia has the buttons stay stationary on the screen
@@ -115,8 +116,8 @@ const ChangePhoto = styled.div`
   background-color: #3b4144;
   margin: auto 0;
   padding: .7rem;
-  max-height: 24px;
-  max-width: 24px;
+  max-height:46px;
+  max-width: 46px;
   justify-content: center;
 `;
 
