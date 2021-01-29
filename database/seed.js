@@ -50,7 +50,10 @@ const insertSampleHomes = () => {
   Homes.create(sampleHomes)
     .then(() => {
       console.log('added stuff to db');
-      db.close();
+      // db.close();
+    })
+    .catch((err) => {
+      console.log('Error seeding: ', err);
     });
 };
 
