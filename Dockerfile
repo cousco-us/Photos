@@ -1,5 +1,4 @@
 FROM node:14.15.1
-# FROM mongo
 
 RUN mkdir -p /src/app
 
