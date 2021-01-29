@@ -108,7 +108,6 @@ const Photo = styled.img`
 
 const ChangePhoto = styled.div`
   flex: 1;
-  flex-basis: auto;
   align-self: ${(props) => ((props.rotation === '180') ? 'flex-start' : 'flex-end')};
   transform: ${(props) => (`rotate(${props.rotation}deg)`)};
   display: flex;
@@ -116,8 +115,8 @@ const ChangePhoto = styled.div`
   background-color: #3b4144;
   margin: auto 0;
   padding: .7rem;
-  max-height:46px;
-  max-width: 46px;
+  max-height:24px;
+  max-width: 24px;
   justify-content: center;
 `;
 
@@ -133,6 +132,7 @@ const Progress = styled.div`
   color: #ffffff;
   font-weight: 700;
   line-height: 24px;
+  min-width: 85px;
   font-size: 16px;
 `;
 
