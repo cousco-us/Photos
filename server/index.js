@@ -9,8 +9,9 @@ const port = 3002;
 app.use(cors());
 app.use(express.json());
 app.use('/', express.static('public'));
+app.use('/:homeId', express.static('public'));
 
-app.get('/api/photoGallery/:homeId', controller.getHomeInfo); //dev
+app.get('/api/photoGallery/:homeId', controller.getHomeInfo);
 app.patch('/api/photoGallery/:homeId', controller.toggleHomeSaved); //dev
 app.get('/api/photoGallery', controller.getAllHomes);
 app.delete('/api/photoGallery', controller.deleteAll); //dev

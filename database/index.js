@@ -27,6 +27,7 @@ const houseDetailsSchema = new mongoose.Schema({
 });
 
 const homesSchema = new mongoose.Schema({
+  id: Number,
   images: Array,
   tags: Array,
   details: { type: houseDetailsSchema, default: {} },

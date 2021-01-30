@@ -2,7 +2,7 @@ const { Homes } = require('./index.js');
 
 module.exports = {
   getHomeInfo: (homeId) => (
-    Homes.find({ _id: homeId })
+    Homes.find({ id: homeId })
   ),
 
   toggleHomeSaved: (homeId, saved) => (
