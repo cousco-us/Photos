@@ -1,7 +1,6 @@
 const faker = require('faker');
 const { Homes, db } = require('./index.js');
 
-
 const possibleTags = ['For Sale', 'For Rent', 'New', 'New Construction', 'Off Market'];
 
 // for now we will not include neighborhood
@@ -12,23 +11,22 @@ function getRandomInt(min, max) {
     max,
   });
 }
+const homesFirstImageIndex = [39, 78, 117, 155, 195, 241, 255, 294, 333];
 const sampleHomes = [];
 for (let i = 0; i < 100; i += 1) {
   const sampleImages = [];
-  for (let j = 0; j < getRandomInt(15, 40); j += 1) {
-    let addedIndices = {};
-    let newIndex = getRandomInt(0, 332);
-    while (addedIndices[newIndex] !== undefined) {
-      newIndex = getRandomInt(0, 332);
-    }
-    addedIndices[newIndex] = 1;
-    sampleImages.push(`https://fec-house-photos.s3-us-west-1.amazonaws.com/${newIndex}.jpg`);
+  const homeIndex = i % (homesFirstImageIndex.length - 1);
+  const firstImageIndex = homesFirstImageIndex[homeIndex];
+  const finalImageIndex = homesFirstImageIndex[homeIndex + 1] - 1;
+  for (let j = firstImageIndex; j <= finalImageIndex; j += 1) {
+    sampleImages.push(`https://fec-house-photos.s3-us-west-1.amazonaws.com/${j}.jpg`);
   }
   const numBeds = getRandomInt(1, 10);
   const numBaths = getRandomInt(1, 10);
   const sqft = (numBeds + numBaths) * getRandomInt(200, 600);
   const tagIndex = getRandomInt(0, possibleTags.length);
   const sampleHome = {
+    id: i,
     images: sampleImages,
     tags: [possibleTags[tagIndex]],
     details: {
