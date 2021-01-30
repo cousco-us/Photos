@@ -78,6 +78,7 @@ class GalleryPreview extends React.Component {
     const show = !this.state.showingGallery;
     this.setState({
       showingGallery: show,
+      imagesZoomed: false,
     });
   }
 
