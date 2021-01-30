@@ -8,6 +8,7 @@ import HomeInfo from './homeInfo.jsx';
 
 const AppWrapper = styled.div`
   display: block;
+  padding-top: 90px;
   max-width: 960px;
   margin: auto;
   overflow: hidden;
