@@ -4,8 +4,13 @@ import styled from 'styled-components';
 import HomeOptions from './galleryPreviewComponents/homeOptions.jsx';
 import PhotoModalWrapper from './photoModal.jsx';
 
+const Background = styled.div`
+  width: 100%;
+  height: 100%;
+  padding: 4% 3%;
+  backdrop-filter: blur(20px);
+`;
 const Wrapper = styled.div`
-  margin: 3%;
   display: flex;
   border-radius: 8px;
   background-color: white;
@@ -122,6 +127,7 @@ const Image = styled.img`
 
 const modalRoot = document.getElementById('gallery-modal-root');
 const appRoot = document.getElementById('gallery');
+const bodyRoot = document.body;
 
 class GalleryModal extends React.Component {
   constructor(props) {
@@ -137,7 +143,8 @@ class GalleryModal extends React.Component {
   componentDidMount() {
     modalRoot.setAttribute('style', 'position: fixed; top: 50%; left: 50%;transform: translate(-50%, -50%); width: 100%; height: 100%;');
     modalRoot.style['background-color'] = 'rgba(0, 0, 0, 0.6)';
-    appRoot.style.filter = 'blur(20px)';
+    // bodyRoot.style.filter = 'blur(20px)';
+    // modalRoot.style.filter = 'blur(0)';
     modalRoot.appendChild(this.el);
   }
 
@@ -173,37 +180,39 @@ class GalleryModal extends React.Component {
     let counter = -1;
     return ReactDOM.createPortal(
       (
-        <Wrapper>
-          <NavBar>
-            <DisplayChoice>
-              <OptionButton>
-                Photos
-              </OptionButton>
-            </DisplayChoice>
-            <Right>
-              <HomeOptions saved={saved} color="#3b4144" handleSaveClick={handleSaveClick} />
-              <CloseBtn color="#3b4144" handleClose={this.props.close} />
-            </Right>
-          </NavBar>
-          <HomeDetails>
-            {`${address.line1} | ${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumSignificantDigits: 7 }).format(price)} | ${numBeds} Beds ${numBaths} Baths`}
-          </HomeDetails>
-          <Images>
-            {
-              images.map((imageArr, i) => (
-                <ImageRow key={imageArr[0] + imageArr.length}>
-                  {
-                    imageArr.map((image, j, arr) => {
-                      counter += 1;
-                      return (<Image key={image} src={image} num={arr.length} alt={counter} onClick={this.handlePhotoModalDisplay} />);
-                    })
-                  }
-                </ImageRow>
-              ))
-            }
-          </Images>
-          <PhotoModalWrapper home={home} saved={this.props.saved} showingPhotoModal={this.state.showingPhotoModal} close={this.handlePhotoModalDisplay} handleSaveClick={this.props.handleSaveClick} index={clickedImageIndex}/>
-        </Wrapper>
+        <Background>
+          <Wrapper>
+            <NavBar>
+              <DisplayChoice>
+                <OptionButton>
+                  Photos
+                </OptionButton>
+              </DisplayChoice>
+              <Right>
+                <HomeOptions saved={saved} color="#3b4144" handleSaveClick={handleSaveClick} />
+                <CloseBtn color="#3b4144" handleClose={this.props.close} />
+              </Right>
+            </NavBar>
+            <HomeDetails>
+              {`${address.line1} | ${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumSignificantDigits: 7 }).format(price)} | ${numBeds} Beds ${numBaths} Baths`}
+            </HomeDetails>
+            <Images>
+              {
+                images.map((imageArr, i) => (
+                  <ImageRow key={imageArr[0] + imageArr.length}>
+                    {
+                      imageArr.map((image, j, arr) => {
+                        counter += 1;
+                        return (<Image key={image} src={image} num={arr.length} alt={counter} onClick={this.handlePhotoModalDisplay} />);
+                      })
+                    }
+                  </ImageRow>
+                ))
+              }
+            </Images>
+            <PhotoModalWrapper home={home} saved={this.props.saved} showingPhotoModal={this.state.showingPhotoModal} close={this.handlePhotoModalDisplay} handleSaveClick={this.props.handleSaveClick} index={clickedImageIndex}/>
+          </Wrapper>
+        </Background>
       ),
       this.el,
     );

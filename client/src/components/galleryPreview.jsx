@@ -24,7 +24,6 @@ const Background = styled.div`
 `;
 
 const Header = styled.span`
-  z-index: 1;
   position: relative;
   width: 100%;
   top: -455px;
@@ -79,6 +78,7 @@ class GalleryPreview extends React.Component {
     const show = !this.state.showingGallery;
     this.setState({
       showingGallery: show,
+      imagesZoomed: false,
     });
   }
 
