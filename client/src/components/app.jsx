@@ -27,7 +27,9 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/api/photoGallery')
+    const pathway = window.location.pathname.match(/\/(\d+)\//);
+    const listingId = pathway ? Number(window.location.pathname.match(/\/(\d+)\//)[1]) : '';
+    axios.get(`/api/photoGallery/${listingId}`)
       .then(({ data }) => {
         const currentHome = data[Math.floor(Math.random() * data.length)];
         const { saved } = currentHome;
