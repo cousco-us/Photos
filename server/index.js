@@ -12,7 +12,7 @@ app.use('/', express.static('public'));
 app.use('/:homeId', express.static('public'));
 
 app.get('/api/photoGallery/:homeId', controller.getHomeInfo);
-app.patch('/api/photoGallery/:homeId', controller.toggleHomeSaved); //dev
+app.patch('/api/photoGallery/:homeId', controller.toggleHomeSaved); //not used on front end yet
 app.get('/api/photoGallery', controller.getAllHomes);
 app.delete('/api/photoGallery', controller.deleteAll); //dev
 
