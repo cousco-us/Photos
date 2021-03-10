@@ -4,9 +4,12 @@
 
 ## Table of Contents
 
-1. [Product details](#product-details)
-2. [Usage](#usage)
-3. [Requirements](#requirements)
+- [**Product Details**](#--product-details--)
+- [Usage](#usage)
+- [**Requirements**](#--requirements--)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 
 ## **Product Details**
 <a name="product-details"/>
@@ -14,7 +17,7 @@ Interactive photo gallery which displays all home images. Reference images sourc
 
 ## Usage
 <a name="usage"/>
-[usage]: From within the root directory:
+From within the root directory:
 
 Install dependencies: 
 ```sh
