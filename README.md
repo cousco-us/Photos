@@ -4,9 +4,9 @@
 
 ## Table of Contents
 
-- [**Product Details**](#product-details)
+- [Product Details](#product-details)
 - [Usage](#usage)
-- [**Requirements**](#requirements)
+- [Requirements](#requirements)
 
 
 ## **Product Details**
@@ -29,7 +29,8 @@ npm run docker-start
 ```
 
 ## **Requirements**
-*Node (6.13.0 or later)
-*Mongo (4.4.3 or later)
+
+- Node (6.13.0 or later)
+- Mongo (4.4.3 or later)
 
 [Product details]:"product-details"
