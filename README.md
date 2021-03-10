@@ -4,9 +4,9 @@
 
 ## Table of Contents
 
-1. [Product details](#Product)
+1. [Product details](#product-details)
 2. [Usage](#Usage)
-3. [Requirements](#Requirements)
+3. [Requirements](#requirements)
 
 ## **Product Details** 
 Interactive photo gallery which displays all home images. Reference images sourced through Trulia's home pages. Front end developed using React, React styled-components, Node and Express. Tested via Enzyme, ESLint, Jest, FakerJS and Express.
