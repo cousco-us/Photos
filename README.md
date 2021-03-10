@@ -28,7 +28,7 @@ npm run docker-start
 ```
 
 ## **Requirements**
-<a name="requirements"/>
-* Node (6.13.0 or later)
-* Mongo (4.4.3 or later)
+*Node (6.13.0 or later)
+*Mongo (4.4.3 or later)
 
+[Product details]:"product-details"
