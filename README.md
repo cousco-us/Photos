@@ -11,7 +11,25 @@
 ## **Product Details**
 <a name="product-details"/>
 Interactive photo gallery which displays all home images. Reference images sourced through Trulia's home pages. Front end developed using React, React styled-components, Node and Express. Tested via Enzyme, ESLint, Jest, FakerJS and Express.
-
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
 ## Usage
 <a name="usage"/>
 From within the root directory:
@@ -29,6 +47,6 @@ npm run docker-start
 
 ## **Requirements**
 <a name="requirements"/>
-- Node (6.13.0 or later)
-- Mongo (4.4.3 or later)
+>Node (6.13.0 or later)
+>Mongo (4.4.3 or later)
 
