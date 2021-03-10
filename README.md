@@ -1,6 +1,7 @@
 # Project Name
 
 > Project description
+![](fecpic.png)
 
 ## Related Projects
 
