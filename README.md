@@ -1,10 +1,10 @@
-# Project Name
+# Photo Gallery Service
 
 ![](fecpic.png)
 
 ## Table of Contents
 
-1. [Product details](#Product Details)
+1. [Product details](#Product)
 2. [Usage](#Usage)
 3. [Requirements](#Requirements)
 
