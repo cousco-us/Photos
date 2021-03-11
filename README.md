@@ -1,7 +1,7 @@
 # Photo Gallery Service
-
-![](fecpic.png =500x)
-![](fecdemo.gif =500x)
+<img src="fecpic.png" alt="mainpic" width="500"/>
+![](fecpic.png)
+![](fecdemo.gif)
 
 ## Table of Contents
 
