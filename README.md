@@ -1,6 +1,6 @@
 # Photo Gallery Service
 <img src="fecpic.png" alt="mainpic" width="700"/>  
-#### In action:  
+In action:  
 <img src="fecdemo.gif" alt="maingif" width="700"/>
 
 
