@@ -1,6 +1,6 @@
 # Photo Gallery Service
-<img src="fecpic.png" alt="mainpic" width="500"/>
-<img src="fecdemo.gif" alt="maingif" width="500"/>
+<img src="fecpic.png" alt="mainpic" width="700"/>
+<img src="fecdemo.gif" alt="maingif" width="700"/>
 
 
 ## Table of Contents
