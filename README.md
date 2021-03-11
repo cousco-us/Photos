@@ -1,6 +1,7 @@
 # Photo Gallery Service
 
 ![](fecpic.png)
+![](fecdemo.gif)
 
 ## Table of Contents
 
